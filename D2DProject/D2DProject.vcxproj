@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{4f5cf25b-d607-4f02-ab93-f0b7485952dc}</ProjectGuid>
+    <RootNamespace>D2DProject</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <ReferencePath>$(ProjectDir);$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <ReferencePath>$(ProjectDir);$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\Engine.vcxproj">
+      <Project>{f048fd18-6028-4c6d-a7a2-366d671a2538}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Data\Object\ObjectData.cpp" />
+    <ClCompile Include="Data\Resource\LoadGunnerAnimation.cpp" />
+    <ClCompile Include="Data\Resource\LoadSkillAnimation.cpp" />
+    <ClCompile Include="Data\Resource\LoadSpriteData.cpp" />
+    <ClCompile Include="Data\Resource\LoadSwordManAnimation.cpp" />
+    <ClCompile Include="Data\Skill\LoadSkillData.cpp" />
+    <ClCompile Include="Data\Skill\LoadSwordManSkillData.cpp" />
+    <ClCompile Include="Data\Skill\SkillData.cpp" />
+    <ClCompile Include="DemoApp.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Script\AI\AI.cpp" />
+    <ClCompile Include="Script\CameraController.cpp" />
+    <ClCompile Include="Script\Effect\NumberFontSprite.cpp" />
+    <ClCompile Include="Script\Map\Interface\IMap.cpp" />
+    <ClCompile Include="Script\Map\Pup.cpp" />
+    <ClCompile Include="Script\Object\BodyActor.cpp" />
+    <ClCompile Include="Script\Object\Charactor\Charactor.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CharactorCore.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorHit.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorIdle.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorJump.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorRun.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorWalk.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharatorBackStep.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\Interface\ICharactorAttackFSM.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\Interface\ICharactorFSM.cpp" />
+    <ClCompile Include="Script\Object\Charactor\Gunner\FSM\GunnerBackStep.cpp" />
+    <ClCompile Include="Script\Object\Charactor\Gunner\FSM\GunnerDashAttack.cpp" />
+    <ClCompile Include="Script\Object\Charactor\Gunner\FSM\GunnerJump.cpp" />
+    <ClCompile Include="Script\Object\Charactor\Gunner\Gunner.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManBackStep.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManBasicAttack1.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManBasicAttack2.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManBasicAttack3.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManDashAttack.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManHardAttack.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManJump.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManJumpAttack.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManUpperSlash.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManVaneSlash.cpp" />
+    <ClCompile Include="Script\Object\Effect\Skill\HardAttack.cpp" />
+    <ClCompile Include="Script\Object\Effect\Skill\UpperSlash.cpp" />
+    <ClCompile Include="Script\Object\Effect\Skill\VaneSlash.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\SwordMan.cpp" />
+    <ClCompile Include="Script\Object\FadeRect.cpp" />
+    <ClCompile Include="Script\Object\Interface\IAttackCore.cpp" />
+    <ClCompile Include="Script\Object\Interface\IHoldSkillCore.cpp" />
+    <ClCompile Include="Script\Object\Interface\IObjectCore.cpp" />
+    <ClCompile Include="Script\Object\Interface\ISkillCore.cpp" />
+    <ClCompile Include="Script\Object\Interface\IUICore.cpp" />
+    <ClCompile Include="Script\Object\UI\HUD\HUDOwner.cpp" />
+    <ClCompile Include="Script\Object\UI\HUD\SkillCoolHUD.cpp" />
+    <ClCompile Include="Script\Object\UI\HUD\Timer.cpp" />
+    <ClCompile Include="Script\Object\UI\HUD\UpperHUD.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\ArrowButton.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\CountDown.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\List.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\ListButton.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\PVPButton.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\PVPList.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\SelectMap.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\SelectType.cpp" />
+    <ClCompile Include="Script\Object\Wall.cpp" />
+    <ClCompile Include="Script\PlayerZoomer.cpp" />
+    <ClCompile Include="Script\Player\Player.cpp" />
+    <ClCompile Include="System\GameManager.cpp" />
+    <ClCompile Include="System\GameMode.cpp" />
+    <ClCompile Include="Script\Object\Effect\Skill\VaneSlashWave.cpp" />
+    <ClCompile Include="World\MainTitle.cpp" />
+    <ClCompile Include="World\PVPMap.cpp" />
+    <ClCompile Include="World\PVPMap_Pup.cpp" />
+    <ClCompile Include="World\SelectRoom.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Contents.h" />
+    <ClInclude Include="Data\Object\ObjectData.h" />
+    <ClInclude Include="Data\Resource\LoadAnimationData.h" />
+    <ClInclude Include="Data\Resource\LoadSpriteData.h" />
+    <ClInclude Include="Data\Skill\LoadSkillData.h" />
+    <ClInclude Include="Data\Skill\LoadSwordManSkillData.h" />
+    <ClInclude Include="Data\Skill\SkillData.h" />
+    <ClInclude Include="DemoApp.h" />
+    <ClInclude Include="Script\AI\AI.h" />
+    <ClInclude Include="Script\CameraController.h" />
+    <ClInclude Include="Script\CommandQueue.h" />
+    <ClInclude Include="Script\CustomInput.h" />
+    <ClInclude Include="Script\Effect\NumberFontSprite.h" />
+    <ClInclude Include="Script\Map\Interface\IMap.h" />
+    <ClInclude Include="Script\Map\Pup.h" />
+    <ClInclude Include="Script\Object\BodyActor.h" />
+    <ClInclude Include="Script\Object\Charactor\Charactor.h" />
+    <ClInclude Include="Script\Object\Charactor\CharactorCore.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorHit.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorIdle.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorJump.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorRun.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorWalk.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharatorBackStep.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\Interface\ICharactorAttackFSM.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\Interface\ICharactorFSM.h" />
+    <ClInclude Include="Script\Object\Charactor\Gunner\FSM\GunnerBackStep.h" />
+    <ClInclude Include="Script\Object\Charactor\Gunner\FSM\GunnerDashAttack.h" />
+    <ClInclude Include="Script\Object\Charactor\Gunner\FSM\GunnerJump.h" />
+    <ClInclude Include="Script\Object\Charactor\Gunner\Gunner.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManBackStep.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManBasicAttack1.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManBasicAttack2.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManBasicAttack3.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManDashAttack.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManHardAttack.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManJump.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManJumpAttack.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManUpperSlash.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManVaneSlash.h" />
+    <ClInclude Include="Script\Object\Effect\Skill\HardAttack.h" />
+    <ClInclude Include="Script\Object\Effect\Skill\UpperSlash.h" />
+    <ClInclude Include="Script\Object\Effect\Skill\VaneSlash.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\SwordMan.h" />
+    <ClInclude Include="Script\Object\FadeRect.h" />
+    <ClInclude Include="Script\Object\Interface\IAttackCore.h" />
+    <ClInclude Include="Script\Object\Interface\IHoldSkillCore.h" />
+    <ClInclude Include="Script\Object\Interface\IObjectCore.h" />
+    <ClInclude Include="Script\Object\Interface\ISkillCore.h" />
+    <ClInclude Include="Script\Object\Interface\IUICore.h" />
+    <ClInclude Include="Script\Object\UI\HUD\HUDOwner.h" />
+    <ClInclude Include="Script\Object\UI\HUD\SkillCoolHUD.h" />
+    <ClInclude Include="Script\Object\UI\HUD\Timer.h" />
+    <ClInclude Include="Script\Object\UI\HUD\UpperHUD.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\ArrowButton.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\CountDown.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\List.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\ListButton.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\PVPButton.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\PVPList.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\SelectMap.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\SelectType.h" />
+    <ClInclude Include="Script\Object\Wall.h" />
+    <ClInclude Include="Script\PlayerZoomer.h" />
+    <ClInclude Include="Script\Player\Player.h" />
+    <ClInclude Include="System\GameManager.h" />
+    <ClInclude Include="System\GameMode.h" />
+    <ClInclude Include="Script\Object\Effect\Skill\VaneSlashWave.h" />
+    <ClInclude Include="World\MainTitle.h" />
+    <ClInclude Include="World\PVPMap.h" />
+    <ClInclude Include="World\PVPMap_Pup.h" />
+    <ClInclude Include="World\SelectRoom.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
