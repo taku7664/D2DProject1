@@ -13,6 +13,7 @@ public:
 	GameManager();
 	virtual ~GameManager();
 
+	FMODPlayer*			BgmPlayer;
 	Actor*				HUDs;
 	static FadeRect*	fader;
 	static HUD::Timer*  timer;
@@ -20,3 +21,10 @@ public:
 	virtual void Update() final;
 };
 
+enum SoundGroup
+{
+	BackGround,
+	Effect,
+	Voice,
+	GroupSize
+};

@@ -12,6 +12,7 @@ void FSM::SwordManVaneSlash::StateEnter()
 	Actor* ef = owner->CreateObject<Actor>("Ef_VaneSlash", LayerTag::Object, ObjectTag::Particle);
 	slashEffect = ef->AddComponent<VaneSlash>();
 	slashEffect->Set(owner, LoadSkill::VaneSlash().GetInfo("Up_Down"));
+	count = 0.0f;
 }
 
 void FSM::SwordManVaneSlash::StateUpdate()
@@ -33,10 +34,6 @@ void FSM::SwordManVaneSlash::StateUpdate()
 				targetCore = slashEffect->collisionArr.front();
 				//slashEffect->animator->ChangeAnimation("VaneSlash", false);
 			}
-		}
-		else
-		{
-			targetCore->gameObject->transform->position = owner->gameObject->transform->position;
 		}
 	}
 	// =================플레이어 키 입력 및 애니메이션=================
@@ -60,6 +57,7 @@ void FSM::SwordManVaneSlash::StateUpdate()
 	{
 		if (owner->animator->End())
 		{
+			count += Time::deltaTime;
 			FSM->ChangeState("Idle");
 		}
 		else if(owner->animator->currentFrame == 2)

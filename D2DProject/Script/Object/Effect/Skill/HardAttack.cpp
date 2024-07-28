@@ -8,9 +8,9 @@ void HardAttack::Set(IObjectCore* _owner, AttackInfo& _info)
 	animator->ChangeAnimation("HardAttack", false);
 	animator->renderOffset = { 100, -65 };
 
-	HitBox->SetState(GameState::Passive);
 	HitBox->offset = { -100.f * gameObject->transform->scale.x, 70.f };
 	HitBox->size = { 200,140 };
+	HitBox->SetState(GameState::Passive);
 }
 
 void HardAttack::Start()

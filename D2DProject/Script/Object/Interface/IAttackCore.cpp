@@ -52,8 +52,6 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 			// 이미 충돌한 객체면 Pass
 			auto it = std::find(collisionArr.begin(), collisionArr.end(), destCore);
 			if (it != collisionArr.end()) return;
-			collisionArr.push_back(destCore);
-
 			// =================상태 변경 및 조건 검사=================
 			FSM::CharactorHit* fsm = destCore->fsm->ChangeStateAndReturn<FSM::CharactorHit>("Hit");
 			if (fsm->isAirbon == true && destCore->zPos == 0.f && !isLow) return;
@@ -63,6 +61,8 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 			CreateDamageEffect(destCore, 1, resDamage);
 			// =================물리 처리 과정=================
 			CalculateVelocity(destCore);
+
+			collisionArr.push_back(destCore);
 		}
 	}
 }

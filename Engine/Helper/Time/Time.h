@@ -12,6 +12,7 @@ private:
 	static float		 m_elapsedTime;
 	static int			 m_fps;
 	static bool		     m_freezeTime;
+	static float         m_maxDeltatime;
 
 public:
 
@@ -26,5 +27,6 @@ public:
 	static float	 GetElapsedTime() { return m_elapsedTime; }
 	static void		 SetFreezeTime(bool _val) { m_freezeTime = _val; }
 	static bool		 GetFreezeTime() { return m_freezeTime; }
+	static void      SetMaxDeltaTime(float _max) { m_maxDeltatime = _max; }
 
 };

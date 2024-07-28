@@ -1,5 +1,6 @@
 #include "VaneSlash.h"
 #include "Contents.h"
+#include "VaneSlashWave.h"
 
 void VaneSlash::Set(IObjectCore* _owner, AttackInfo& _info)
 {
@@ -9,8 +10,8 @@ void VaneSlash::Set(IObjectCore* _owner, AttackInfo& _info)
 	animator->ChangeAnimation("VaneSlash", false);
 	animator->renderOffset = { 40, -80 }; // x 작을수록 왼쪽, y 작을수록 아래쪽
 	
-	HitBox->offset = { -80.f * gameObject->transform->scale.x, 80.f };
-	HitBox->size = { 80,70 };
+	HitBox->offset = { -60.f * gameObject->transform->scale.x, 80.f };
+	HitBox->size = { 150,130 };
 }
 
 void VaneSlash::Start()
@@ -20,6 +21,14 @@ void VaneSlash::Start()
 void VaneSlash::Update()
 {
 	animator->countScale = owner->attackSpd;
+	if (animator->IndexEnter(2) && IsHit())
+	{
+		Actor* ef = owner->CreateObject<Actor>("Ef_VaneSlash", LayerTag::Object, ObjectTag::Particle);
+		wave = ef->AddComponent<VaneSlashWave>();
+		wave->target = collisionArr.front();
+		wave->Set(owner, LoadSkill::VaneSlash().GetInfo("Wave"));
+		HitBox->SetState(GameState::Passive);
+	}
 	if (animator->IndexEnter(4))
 	{
 		if (!IsHit())

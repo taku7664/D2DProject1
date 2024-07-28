@@ -10,6 +10,7 @@ namespace FSM
 		: public ICharactorFSM
 	{
 	private:
+		float count = 0.f;
 	public:
 
 		IObjectCore* targetCore = nullptr;

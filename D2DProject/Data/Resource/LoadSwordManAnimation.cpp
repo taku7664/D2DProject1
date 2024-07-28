@@ -174,11 +174,11 @@ namespace LoadAnimation
         _spriteKey = L"S_SwordManSheet2";
         _data = {
             //{75, 0.1f, Vector2(20,0)},
-            {76, 0.1f, Vector2(20,0)},
-            {77, 0.1f, Vector2(20,0)},
-            {78, 0.1f, Vector2(20,0)},
-            {79, 0.1f, Vector2(20,0)},
-            {80, 0.1f, Vector2(20,0)}
+            {76, 0.1f, Vector2(15,0)},
+            {77, 0.1f, Vector2(15,0)},
+            {78, 0.1f, Vector2(15,0)},
+            {79, 0.1f, Vector2(15,0)},
+            {80, 0.1f, Vector2(15,0)}
         };
     }
     // 열파참2 모션
@@ -187,12 +187,12 @@ namespace LoadAnimation
         _key = L"A_SwordManAttack3";
         _spriteKey = L"S_SwordManSheet2";
         _data = {
-            {81, 0.2f, Vector2(20,0)},
-            {82, 0.2f, Vector2(20,0)},
-            {83, 0.1f, Vector2(20,0)},
-            {84, 0.1f, Vector2(20,0)},
-            {85, 0.1f, Vector2(20,0)},
-            {86, 0.1f, Vector2(20,0)}
+            {81, 0.2f, Vector2(15,0)},
+            {82, 0.2f, Vector2(15,0)},
+            {83, 0.1f, Vector2(15,0)},
+            {84, 0.1f, Vector2(15,0)},
+            {85, 0.1f, Vector2(15,0)},
+            {86, 0.1f, Vector2(15,0)}
         };
     }
 }

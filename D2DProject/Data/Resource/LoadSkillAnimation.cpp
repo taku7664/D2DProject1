@@ -27,6 +27,22 @@ namespace LoadAnimation
             {3, 0.1f}
         };
     }
+    VaneSlash::VaneSlash()
+    {
+        _key = L"A_VaneSlash";
+        _spriteKey = L"S_VaneSlashSheet2";
+        _data = {
+            {0, 0.1f, Vector2(70,40)},
+            {1, 0.1f, Vector2(70,40)},
+            {2, 0.1f, Vector2(70,40)},
+            {3, 0.1f, Vector2(70,40)},
+            {4, 0.1f},
+            {5, 0.1f},
+            {6, 0.1f},
+            {7, 0.1f},
+            {8, 0.1f}
+        };
+    }
     VaneSlashWave::VaneSlashWave()
     {
         _key = L"A_VaneSlashWave";
@@ -50,22 +66,6 @@ namespace LoadAnimation
             {15, 0.1f},
             {16, 0.1f},
             {17, 0.1f}
-        };
-    }
-    VaneSlash::VaneSlash()
-    {
-        _key = L"A_VaneSlash";
-        _spriteKey = L"S_VaneSlashSheet2";
-        _data = {
-            {0, 0.1f, Vector2(70,40)},
-            {1, 0.1f, Vector2(70,40)},
-            {2, 0.1f, Vector2(70,40)},
-            {3, 0.1f, Vector2(70,40)},
-            {4, 0.1f},
-            {5, 0.1f},
-            {6, 0.1f},
-            {7, 0.1f},
-            {8, 0.1f}
         };
     }
 };

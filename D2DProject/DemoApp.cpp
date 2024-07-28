@@ -36,6 +36,10 @@ void DemoApp::LoadWorld()
 
 void DemoApp::LoadResource()
 {
+	FMODSystem::SetGroup(GroupSize);
+	FMODSystem::Initialize();
+	ResourceManager::AddFMODSound(L"Odesa", L"Sound/odesa_new.ogg", BackGround);
+
 	LoadSprite::SwordManSheet1().Load();
 	LoadSprite::SwordManSheet2().Load();
 	LoadSprite::GunnerSheet1().Load();

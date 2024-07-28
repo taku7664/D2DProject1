@@ -6,6 +6,7 @@
 #include "../../../Component/Script.h"
 #include "../../../Component/FiniteStateMachine.h"
 #include "../../../Component/Button.h"
+#include "../../../Component/FMODPlayer.h"
 // RenderComponent
 #include "../../../Component/Rednerer/SpriteRenderer2D.h"
 #include "../../../Component/Rednerer/Animator2D.h"

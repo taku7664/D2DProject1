@@ -9,6 +9,7 @@ float		  Time::m_frameTime = 0.f;
 float		  Time::m_elapsedTime = 0.f;
 int			  Time::m_fps = 0;
 bool		  Time::m_freezeTime = false;
+float         Time::m_maxDeltatime = 0.5f;
 
 float		  Time::deltaTime = 0.f;
 float		  Time::timeScale = 1.f;
@@ -27,7 +28,7 @@ void Time::Update()
 			(float)(m_curTime.QuadPart - m_preTime.QuadPart)
 			/ (float)(m_frequency.QuadPart)
 			* timeScale;
-
+		if (deltaTime >= 0.5f) deltaTime = 0.5f;
 		m_preTime = m_curTime;
 		m_frameTime += deltaTime;
 		m_elapsedTime += deltaTime;

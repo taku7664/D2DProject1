@@ -148,9 +148,6 @@ void CollisionManager::CheckCollider(Actor* _left, Actor* _right)
 	// 둘다 콜라이더가 있을 시에만 검사를 한다.
 	if (_leftCollider && _rightCollider)
 	{
-		if (_leftCollider->GetState() != GameState::Active ||
-			_rightCollider->GetState() != GameState::Active)
-			return;
 		// ID값을 통해 서로의 충돌상태를 확인
 		bool check = GetCollisionID(_leftCollider, _rightCollider);
 
@@ -185,13 +182,19 @@ void CollisionManager::CheckCollider(Actor* _left, Actor* _right)
 
 bool CollisionManager::CheckCollision(Collider* _left, Collider* _right)
 {
-	// 콜라이더 타입을 받아온다.
-	ComponentType _leftType = _left->GetType();
-	ComponentType _rightType = _right->GetType();
+	GameState leftState = _left->GetState();
+	GameState rightState = _right->GetState();
+	if (leftState == GameState::Active && rightState == GameState::Active)
+	{
+		// 콜라이더 타입을 받아온다.
+		ComponentType _leftType = _left->GetType();
+		ComponentType _rightType = _right->GetType();
 
-	// 콜라이더의 종류에 따라 다른 충돌 알고리즘을 호출한다.
-	if (_leftType == ComponentType::BoxCollider2D && _rightType == ComponentType::BoxCollider2D)
-		return (BoxToBox(dynamic_cast<BoxCollider2D*>(_left), dynamic_cast<BoxCollider2D*>(_right)));
+		// 콜라이더의 종류에 따라 다른 충돌 알고리즘을 호출한다.
+		if (_leftType == ComponentType::BoxCollider2D && _rightType == ComponentType::BoxCollider2D)
+			return (BoxToBox(dynamic_cast<BoxCollider2D*>(_left), dynamic_cast<BoxCollider2D*>(_right)));
+	}
+	else return false;
 }
 
 bool CollisionManager::BoxToBox(BoxCollider2D* _left, BoxCollider2D* _right)
@@ -199,15 +202,6 @@ bool CollisionManager::BoxToBox(BoxCollider2D* _left, BoxCollider2D* _right)
 	// 아래는 충돌검사 로직
 	Vector2 leftTr = _left->gameObject->transform->WorldPosition() - _left->offset;
 	Vector2 rightTr = _right->gameObject->transform->WorldPosition() - _right->offset;
-
-	/*D2D1_RECT_F leftRect = { 
-		leftTr.x - _left->size.width / 2, leftTr.y - _left->size.height / 2,
-		leftTr.x + _left->size.width / 2, leftTr.y + _left->size.height / 2 
-	};
-	D2D1_RECT_F rightRect = { 
-		rightTr.x - _right->size.width / 2, rightTr.y - _right->size.height / 2,
-		rightTr.x + _right->size.width / 2, rightTr.y + _right->size.height / 2 
-	};*/
 
 	// self min,max
 	float left_xmin = leftTr.x - _left->size.x / 2;
@@ -230,13 +224,4 @@ bool CollisionManager::BoxToBox(BoxCollider2D* _left, BoxCollider2D* _right)
 	}
 
 	return true;
-
-	// 충돌 여부를 검사
-	/*bool isColliding = (
-		(leftRect.left < rightRect.right ||
-		leftRect.right > rightRect.left) &&
-		(leftRect.top < rightRect.bottom ||
-		leftRect.bottom > rightRect.top));*/
-
-	//return isColliding;
 }

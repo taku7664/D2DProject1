@@ -28,7 +28,7 @@ namespace Resource
 	{
 	public:
 
-		Sprite2D(const std::wstring& _key, const std::wstring& _path, SpriteData _data);
+		Sprite2D(const std::wstring& _key, const std::wstring& _path, ResourceType _type, SpriteData _data);
 		Sprite2D(const std::wstring& _key, const std::wstring& _path, CSVSpriteData _data);
 		virtual ~Sprite2D();
 

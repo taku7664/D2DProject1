@@ -26,15 +26,14 @@
 #include <wincodec.h>
 #include <comdef.h>
 
-// Fmod
-//#include "./Library/FMOD/Include/fmod.hpp"
-//#include "./Library/FMOD/Include/fmod_studio.hpp"
-//#include "./Library/FMOD/Include/fmod_common.h"
-//#include "./Library/FMOD/Include/fmod_codec.h"
+// FMOD
+#include "Library/FMOD/Include/fmod.hpp"
+#include "Library/FMOD/Include/fmod_studio.hpp"
+#include "Library/FMOD/Include/fmod_common.h"
+#include "Library/FMOD/Include/fmod_codec.h"
 
-//#pragma comment (lib, "C:/Users/User/source/repos/D2D_miniProject/Engine/Library/FMOD/fmod_vc.lib")
-//#pragma comment (lib, "Library/FMOD/fmod_vc.lib")
 #pragma comment (lib, "../Engine/Library/FMOD/fmod_vc.lib")
+#pragma comment (lib, "../Engine/Library/FMOD/fmodstudio_vc.lib")
 
 #include "Helper/CommonEnum.h"
 #include "Helper/Math/MathH.h"

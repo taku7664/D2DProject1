@@ -4,6 +4,7 @@
 std::wstring ResourceManager::m_assetPath = L"Asset/";
 std::unordered_map<std::wstring, Resource::Sprite2D*> ResourceManager::m_spriteMap;
 std::unordered_map<std::wstring, Resource::Animation2D*> ResourceManager::m_animationMap;
+std::unordered_map<std::wstring, Resource::FMODSound*> ResourceManager::m_audioMap;
 
 Resource::Sprite2D* ResourceManager::AddSprite2D(const std::wstring& _key, const std::wstring& _path, SpriteData _data)
 {
@@ -15,7 +16,7 @@ Resource::Sprite2D* ResourceManager::AddSprite2D(const std::wstring& _key, const
 	}
 	else
 	{
-		_sprite = new Resource::Sprite2D(_key, temp, _data);
+		_sprite = new Resource::Sprite2D(_key, temp, ResourceType::Sprite2D, _data);
 		m_spriteMap.insert(std::make_pair(_key, _sprite));
 	}
 	return _sprite;
@@ -30,10 +31,26 @@ Resource::Animation2D* ResourceManager::AddAnimation2D(const std::wstring& _key,
 	}
 	else
 	{
-		_anime = new Resource::Animation2D(_key, _sprite, _data);
+		_anime = new Resource::Animation2D(_key, ResourceType::Animation2D, _sprite, _data);
 		m_animationMap.insert(std::make_pair(_key, _anime));
 	}
 	return _anime;
+}
+
+Resource::FMODSound* ResourceManager::AddFMODSound(const std::wstring& _key, const std::wstring& _path, int _group)
+{
+	std::wstring temp = L"Asset/" + _path;
+	Resource::FMODSound* _audio = GetFMODSound(_key);
+	if (_audio != nullptr)
+	{
+		return _audio;
+	}
+	else
+	{
+		_audio = new Resource::FMODSound(_key, temp, ResourceType::AudioClip, _group);
+		m_audioMap.insert(std::make_pair(_key, _audio));
+	}
+	return _audio;
 }
 
 Resource::Sprite2D* ResourceManager::GetSprite2D(const std::wstring& _key)
@@ -51,6 +68,16 @@ Resource::Animation2D* ResourceManager::GetAnimation2D(const std::wstring& _key)
 	std::unordered_map<std::wstring, Resource::Animation2D*>::iterator it = m_animationMap.find(_key);
 
 	if (it == m_animationMap.end())
+		return nullptr;
+
+	return it->second;
+}
+
+Resource::FMODSound* ResourceManager::GetFMODSound(const std::wstring& _key)
+{
+	std::unordered_map<std::wstring, Resource::FMODSound*>::iterator it = m_audioMap.find(_key);
+
+	if (it == m_audioMap.end())
 		return nullptr;
 
 	return it->second;
@@ -77,7 +104,8 @@ bool ResourceManager::ReleaseAnimation2D(const std::wstring& _key)
 
 void ResourceManager::Clear()
 {
-	// clear()로도 second값의 소멸자가 호출 된다네요? 안댐 
+	// clear()로도 second값의 소멸자가 호출 된다네요? 
+	// 안댐 
 	m_spriteMap.clear();
 	m_animationMap.clear();
 }

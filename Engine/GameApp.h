@@ -6,6 +6,7 @@
 #include "Collision/Manager/CollisionManager.h"
 #include "Collision/Manager/ButtonManager.h"
 #include "GameManager/GameManager.h"
+#include "SoundSystem/FMODSystem.h"
 
 // 최상단 인터페이스
 // 클라이언트 측에서 GameApp을 include 및 상속해서 쓰면 모든 기능을 사용할 수 잇다.

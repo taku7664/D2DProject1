@@ -2,12 +2,11 @@
 #include "Sprite2D.h"
 #include "../Render/D2DRender.h"
 
-Resource::Sprite2D::Sprite2D(const std::wstring& _key, const std::wstring& _path, SpriteData _data)
+Resource::Sprite2D::Sprite2D(const std::wstring& _key, const std::wstring& _path, ResourceType _type, SpriteData _data)
+    : Resource(_key, _type)
 {
-    type = ResourceType::Sprite2D;
-    m_key = _key;
+    m_path = _path;
     m_spriteData = _data;
-
     ID2D1Bitmap* tempTexture = nullptr;
 
     if (_path.empty()) // 파일경로 없을 시 예외
@@ -96,10 +95,6 @@ Resource::Sprite2D::Sprite2D(const std::wstring& _key, const std::wstring& _path
     if (decoder) decoder->Release();
     if (pFrame) pFrame->Release();
     if (tempTexture) tempTexture->Release();
-}
-
-Resource::Sprite2D::Sprite2D(const std::wstring& _key, const std::wstring& _path, CSVSpriteData _data)
-{
 }
 
 Resource::Sprite2D::~Sprite2D()

@@ -53,7 +53,7 @@ namespace LoadSkill
 				{6}  // ÄðÅ¸ÀÓ
 			};
 			info.insert(std::make_pair("Slash", AttackInfo() = {
-				2.5f,
+				3.0f,
 				60.0f,
 				300.0f,
 				3.0f,
@@ -78,16 +78,16 @@ namespace LoadSkill
 			info.insert(std::make_pair("Up_Down", AttackInfo() = {
 				0.2f,
 				50.0f,
-				0.0f,
+				1.0f,
 				0.0f,
 				Vector2(0.0f,0.0f),
 				false,
 				true
 			}));
 			info.insert(std::make_pair("Wave", AttackInfo() = {
-				0.7f,
+				1.5f,
 				100.0f,
-				100.0f,
+				150.0f,
 				0.3f,
 				Vector2(120.0f,0.0f),
 				true,

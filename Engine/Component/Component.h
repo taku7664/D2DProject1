@@ -28,4 +28,3 @@ protected:
 	GameState	    m_state = GameState::Active;
 
 };
-

@@ -33,7 +33,7 @@ void HUD::Timer::Update()
 	int min = (int)tempTimer / 60;
 	int sec = (int)tempTimer % 60;
 	int ms = (tempTimer - (int)tempTimer) * 100.0f;
-
+	if (min < 0) min = 0; if (sec < 0) sec = 0; if (ms < 0) ms = 0;
 	timeSprite[0]->index = ms % 10;
 	timeSprite[1]->index = ms / 10;
 	timeSprite[3]->index = sec % 10;

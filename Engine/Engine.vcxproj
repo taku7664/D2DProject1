@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Component\FMODPlayer.h" />
     <ClInclude Include="Collision\Manager\ButtonManager.h" />
     <ClInclude Include="Collision\Manager\CollisionManager.h" />
     <ClInclude Include="Component\Button.h" />
@@ -168,6 +169,9 @@
     <ClInclude Include="Component\Rednerer\SpriteRenderer2D.h" />
     <ClInclude Include="Component\Script.h" />
     <ClInclude Include="Component\Transform2D.h" />
+    <ClInclude Include="SoundSystem\ISoundSystem.h" />
+    <ClInclude Include="Resource\FMODSound.h" />
+    <ClInclude Include="SoundSystem\FMODSystem.h" />
     <ClInclude Include="FSMState\FSMState.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameManager\GameManager.h" />
@@ -210,6 +214,7 @@
     <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component\FMODPlayer.cpp" />
     <ClCompile Include="Collision\Manager\ButtonManager.cpp" />
     <ClCompile Include="Collision\Manager\CollisionManager.cpp" />
     <ClCompile Include="Component\Button.cpp" />
@@ -225,6 +230,9 @@
     <ClCompile Include="Component\Rednerer\SpriteRenderer2D.cpp" />
     <ClCompile Include="Component\Script.cpp" />
     <ClCompile Include="Component\Transform2D.cpp" />
+    <ClCompile Include="SoundSystem\ISoundSystem.cpp" />
+    <ClCompile Include="Resource\FMODSound.cpp" />
+    <ClCompile Include="SoundSystem\FMODSystem.cpp" />
     <ClCompile Include="FSMState\FSMState.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameManager\GameManager.cpp" />

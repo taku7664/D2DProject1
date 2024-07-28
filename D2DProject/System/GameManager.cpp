@@ -7,6 +7,12 @@ HUD::Timer* GameManager::timer = nullptr;
 
 GameManager::GameManager()
 {
+
+	BgmPlayer = CreateObject<Actor>("BgmPlayer")->AddComponent<FMODPlayer>();
+	BgmPlayer->SetAudio(L"Odesa");
+	BgmPlayer->Play();
+	BgmPlayer->SetVolume(0.05f);
+
 	for (int i = 1; i <= 6; i++)
 	{
 		ResourceManager::AddSprite2D(L"DamageFont" + std::to_wstring(i),

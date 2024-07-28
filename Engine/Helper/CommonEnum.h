@@ -73,6 +73,7 @@ enum class ResourceType
 	Texture2D,
 	Sprite2D,
 	Animation2D,
+	AudioClip,
 	SIZE,
 };
 
