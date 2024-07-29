@@ -57,6 +57,38 @@ LoadSound::Run3::Run3()
 	group = Effect;
 }
 
+LoadSound::Count1::Count1()
+{
+	_key = L"Count1";
+	_path = L"Sound/Voice/PVP/hk10_m_count_01.ogg";
+	isLoop = false;
+	group = Voice;
+}
+
+LoadSound::Count2::Count2()
+{
+	_key = L"Count2";
+	_path = L"Sound/Voice/PVP/hk10_m_count_02.ogg";
+	isLoop = false;
+	group = Voice;
+}
+
+LoadSound::Count3::Count3()
+{
+	_key = L"Count3";
+	_path = L"Sound/Voice/PVP/hk10_m_count_03.ogg";
+	isLoop = false;
+	group = Voice;
+}
+
+LoadSound::Fight::Fight()
+{
+	_key = L"Fight";
+	_path = L"Sound/Voice/PVP/hk10_m_count_fight.ogg";
+	isLoop = false;
+	group = Voice;
+}
+
 LoadSound::Voice_SwordManBassicAttack1::Voice_SwordManBassicAttack1()
 {
 	_key = L"Voice_SwordManBassicAttack1";
@@ -121,6 +153,16 @@ LoadSound::Voice_SwordManBackStep::Voice_SwordManBackStep()
 	group = Voice;
 }
 
+
+LoadSound::Voice_SwordManDie::Voice_SwordManDie()
+{
+	_key = L"Voice_SwordManDie";
+	_path = L"Sound/Voice/SwordMan/sm_die.ogg";
+	isLoop = false;
+	group = Voice;
+}
+
+
 LoadSound::Voice_SwordManJumpAttack1::Voice_SwordManJumpAttack1()
 {
 	_key = L"Voice_SwordManJumpAttack1";
@@ -133,6 +175,15 @@ LoadSound::Voice_SwordManJumpAttack2::Voice_SwordManJumpAttack2()
 {
 	_key = L"Voice_SwordManJumpAttack2";
 	_path = L"Sound/Voice/SwordMan/sm_jumpatk_02.ogg";
+	isLoop = false;
+	group = Voice;
+}
+
+
+LoadSound::Voice_UpperSlash::Voice_UpperSlash()
+{
+	_key = L"Voice_UpperSlash";
+	_path = L"Sound/Voice/SwordMan/sm_upslash.ogg";
 	isLoop = false;
 	group = Voice;
 }

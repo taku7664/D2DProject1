@@ -27,6 +27,10 @@ public:
 	static float atkSpeedPer;
 	static float movSpeedPer;
 
+	static bool isEnd;
+
+	static bool CheckGameEnd(); 
+
 	template <typename T1, typename T2>
 	static Actor* AddPlayer(World* _world)
 	{

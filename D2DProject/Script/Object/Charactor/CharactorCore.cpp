@@ -53,7 +53,7 @@ void CharactorCore::LateUpdate()
 	if (hp._cur <= 0)
 	{
 		hp._cur = 0.f;
-		fsm->ChangeState("Hit");
+		if(zPos == 0.f) fsm->ChangeState("Die");
 	}
 	if (mp._cur <= 0)
 	{

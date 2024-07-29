@@ -169,6 +169,7 @@
     <ClInclude Include="Component\Rednerer\SpriteRenderer2D.h" />
     <ClInclude Include="Component\Script.h" />
     <ClInclude Include="Component\Transform2D.h" />
+    <ClInclude Include="Component\Rednerer\LineRenderer.h" />
     <ClInclude Include="SoundSystem\ISoundSystem.h" />
     <ClInclude Include="Resource\FMODSound.h" />
     <ClInclude Include="SoundSystem\FMODSystem.h" />
@@ -230,6 +231,7 @@
     <ClCompile Include="Component\Rednerer\SpriteRenderer2D.cpp" />
     <ClCompile Include="Component\Script.cpp" />
     <ClCompile Include="Component\Transform2D.cpp" />
+    <ClCompile Include="Component\Rednerer\LineRenderer.cpp" />
     <ClCompile Include="SoundSystem\ISoundSystem.cpp" />
     <ClCompile Include="Resource\FMODSound.cpp" />
     <ClCompile Include="SoundSystem\FMODSystem.cpp" />

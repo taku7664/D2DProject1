@@ -44,7 +44,6 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 
 			// Core로 변경
 			destCore = destAct->GetComponent<IObjectCore>();
-			if (!destCore || destCore->hp._cur <= 0.f) return;
 			if (owner->gameObject->transform->position.y > destCore->gameObject->transform->position.y + yHitRange * 0.5f ||
 				owner->gameObject->transform->position.y < destCore->gameObject->transform->position.y - yHitRange * 0.5f)
 				return;
@@ -52,10 +51,20 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 			auto it = std::find(collisionArr.begin(), collisionArr.end(), destCore);
 			if (it != collisionArr.end()) return;
 			// =================상태 변경 및 조건 검사=================
+			if (!destCore) return;
 			FSM::CharactorHit* fsm = destCore->fsm->ChangeStateAndReturn<FSM::CharactorHit>("Hit");
+			if (fsm->owner->state == CharactorState::Die) return;
 			if (fsm->isAirbon == true && destCore->zPos >= -10.f && !isLow) return;
 			// =================데미지 연산 과정=================
 			float resDamage = CalculateDamage(destCore);
+			if (destCore->hp._cur <= 0.f)
+			{
+				if (GameMode::CheckGameEnd())
+				{
+					Time::timeScale = 0.2f;
+				}
+				return;
+			}
 			// =================데미지 이펙트 출력=================
 			CreateDamageEffect(destCore, 1, resDamage);
 			// =================물리 처리 과정=================

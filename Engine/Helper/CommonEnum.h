@@ -58,6 +58,7 @@ enum class ComponentType
 	CircleCollider2D,
 	SpriteRenderer2D,
 	RectRenderer,
+	LineRenderer,
 	Animator2D,
 	Button,
 	Script,

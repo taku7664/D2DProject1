@@ -1,13 +1,20 @@
 #include "SwordManUpperSlash.h"
-#include "Data/Skill/LoadSwordManSkillData.h"
+#include "Contents.h"
 #include "../../CharactorCore.h"
 #include "../../../Effect/Skill/UpperSlash.h"
+
+void FSM::SwordManUpperSlash::Start()
+{
+	__super::Start();
+	voices.push_back(LoadSound::Voice_UpperSlash().Load());
+}
 
 void FSM::SwordManUpperSlash::StateEnter()
 {
 	owner->animator->ChangeAnimation("BasicAttack3", false);
 	owner->animator->GotoAndPlay(0);
 	owner->state = CharactorState::Attack;
+	owner->soundPlayer->Play(voices.front());
 }
 
 void FSM::SwordManUpperSlash::StateUpdate()

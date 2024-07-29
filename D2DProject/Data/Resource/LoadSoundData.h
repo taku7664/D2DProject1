@@ -34,12 +34,18 @@ namespace LoadSound
 	struct Run2 : public LoadSoundData { Run2(); };
 	struct Run3 : public LoadSoundData { Run3(); };
 
+	struct Count1 : public LoadSoundData { Count1(); };
+	struct Count2 : public LoadSoundData { Count2(); };
+	struct Count3 : public LoadSoundData { Count3(); };
+	struct Fight : public LoadSoundData { Fight(); };
+
 	//SwordMan Voice
 	struct Voice_SwordManHit1 : public LoadSoundData { Voice_SwordManHit1(); };
 	struct Voice_SwordManHit2 : public LoadSoundData { Voice_SwordManHit2(); };
 	struct Voice_SwordManHit3 : public LoadSoundData { Voice_SwordManHit3(); };
 	struct Voice_SwordManJump : public LoadSoundData { Voice_SwordManJump(); };
 	struct Voice_SwordManBackStep : public LoadSoundData { Voice_SwordManBackStep(); };
+	struct Voice_SwordManDie : public LoadSoundData { Voice_SwordManDie(); };
 
 	struct Voice_SwordManJumpAttack1 : public LoadSoundData { Voice_SwordManJumpAttack1(); };
 	struct Voice_SwordManJumpAttack2 : public LoadSoundData { Voice_SwordManJumpAttack2(); };
@@ -48,11 +54,13 @@ namespace LoadSound
 	struct Voice_SwordManBassicAttack3 : public LoadSoundData { Voice_SwordManBassicAttack3(); };
 	struct Voice_SwordManDashAttack : public LoadSoundData { Voice_SwordManDashAttack(); };
 
-	struct Voice_SwordManvaneSlashUp : public LoadSoundData { Voice_SwordManvaneSlashUp(); };
-	struct Voice_SwordManvaneSlashDown : public LoadSoundData { Voice_SwordManvaneSlashDown(); };
+	struct Voice_UpperSlash: public LoadSoundData { Voice_UpperSlash(); };
 
 	struct Voice_HardAttackVoice1 : public LoadSoundData { Voice_HardAttackVoice1(); };
 	struct Voice_HardAttackVoice2 : public LoadSoundData { Voice_HardAttackVoice2(); };
+
+	struct Voice_SwordManvaneSlashUp : public LoadSoundData { Voice_SwordManvaneSlashUp(); };
+	struct Voice_SwordManvaneSlashDown : public LoadSoundData { Voice_SwordManvaneSlashDown(); };
 
 	//Effect
 	struct UpperSlash1 : public LoadSoundData			 { UpperSlash1(); };

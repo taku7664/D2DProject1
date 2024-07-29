@@ -1,13 +1,15 @@
 #pragma once
-#include "../../CommonFSM/Interface/ICharactorFSM.h"
+#include "Interface/ICharactorFSM.h"
 
 namespace FSM
 {
-	class SwordManUpperSlash
+	class CharactorDie
 		: public ICharactorFSM
 	{
 	private:
 	public:
+		float startJump;
+		float standTime;
 		void Start();
 		void StateEnter();
 		void StateUpdate();

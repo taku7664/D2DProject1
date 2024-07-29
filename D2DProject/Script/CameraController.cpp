@@ -47,6 +47,7 @@ void CameraController::Update()
 				SetSca.x = (maxPos.y - minPos.y) / (GameApp::GetScreenSize().y * 0.8f);
 				SetSca.y = SetSca.x;
 			}
+			SetSca -= (float)GameMode::isEnd * 0.5f;
 		}
 	}
 	gameObject->transform->position =
@@ -75,7 +76,6 @@ void CameraController::Update()
 			gameObject->transform->scale = oldScale;
 		}
 	}
-	
 	
 }
 

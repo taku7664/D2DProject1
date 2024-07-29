@@ -11,12 +11,6 @@ void FSM::CharactorHit::StateEnter()
 
 void FSM::CharactorHit::StateUpdate()
 { 
-	if (owner->hp._cur <= 0.f)
-	{
-		owner->state = CharactorState::Die;
-		FSM->ChangeState("Die");
-		return;
-	}
 	//=================중력보정 연산=================
 	float hpPer = (float)(preHp - owner->hp._cur) / (float)owner->hp._max;
 	if (hpPer > 0.3f)
@@ -86,6 +80,10 @@ void FSM::CharactorHit::StateExit()
 {
 	isAirbon = false;
 	owner->gravityScale = 1.f;
+	owner->isAirial = false;
+	owner->zPos = 0.f;
+	owner->gravity = 0.f;
+	standTime = 0.f;
 }
 
 void FSM::CharactorHit::HitEnter()

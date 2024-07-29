@@ -14,6 +14,7 @@ namespace FSM
 	void SwordManHardAttack::StateEnter()
 	{
 		owner->animator->ChangeAnimation("Attack1", false);
+		owner->animator->GotoAndPlay(0);
 		owner->state = CharactorState::Attack;
 		owner->soundPlayer->Play(voices[Random::Range(0, voices.size() - 1)]);
 	}
