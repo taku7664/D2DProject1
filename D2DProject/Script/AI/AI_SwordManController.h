@@ -10,7 +10,10 @@ private:
 
 	AI* owner;
 	float targetTimer = 0.f;
+	float moveTimer = 10.f;
 	Vector2 targetDistance;
+
+	void Cmd_Dash(KeyType _key);
 
 public:
 

@@ -15,7 +15,7 @@ void FSM::CharactorHit::StateUpdate()
 	float hpPer = (float)(preHp - owner->hp._cur) / (float)owner->hp._max;
 	if (hpPer > 0.3f)
 	{
-		owner->gravityScale = 1.5f + (hpPer - 0.3) * 2;
+		owner->gravityScale = 2.0f + (hpPer - 0.3) * 3;
 	}
 	//=================공중에 뜬 상태의 중력연산=================
 	if (isAirbon)
@@ -88,6 +88,7 @@ void FSM::CharactorHit::StateExit()
 	owner->zPos = 0.f;
 	owner->gravity = 0.f;
 	standTime = 0.f;
+	owner->invCount = owner->invTime;
 }
 
 void FSM::CharactorHit::HitEnter()

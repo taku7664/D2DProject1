@@ -22,6 +22,16 @@ void IObjectCore::LateUpdate()
 	// 몸체 오브젝트의 y값 = zPos
 	bodyActor->transform->position.y = zPos;
 	bodyActor->depthsLevel = gameObject->transform->position.y;
+
+	if (invCount <= 0.f)
+	{
+		body->SetState(GameState::Active);
+	}
+	else
+	{
+		invCount -= Time::deltaTime;
+		body->SetState(GameState::Passive);
+	}
 }
 
 void IObjectCore::OnDestroy()

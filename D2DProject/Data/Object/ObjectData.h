@@ -25,5 +25,8 @@ public:
 	float weight = 1.f;	             // 무게 (무거울수록 잘 안뜸)
 	bool isAirial = false;			 // 공중에 떴는가?
 
+	float invTime = 0.f;			 // 무적 시간
+	float invCount = 0.f;			 // 무적 시간 카운터
+
 };
 

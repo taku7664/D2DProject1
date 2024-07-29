@@ -41,20 +41,6 @@ namespace FSM
 
 	void FSM::SwordManJumpAttack::StateUpdate()
 	{
-		// =================공격 히트박스 관련=================
-		hitBox->gameObject->transform->position = owner->bodyActor->transform->WorldPosition();
-		if (owner->animator->IndexEnter(2)) hitBox->gameObject->SetActive(true);
-		if (owner->animator->IndexEnter(4)) hitBox->gameObject->SetActive(false);
-
-		// =================플레이어 이동 연산=================
-		if(!isBackstep)
-			owner->SetMoveDirect();
-		owner->zPos += owner->gravity * Time::deltaTime; 
-		owner->gravity += owner->weight * owner->gravityScale * Time::deltaTime;
-		owner->gameObject->transform->position +=
-			owner->dirVector * owner->moveSpd *
-			Time::deltaTime * Vector2(1.f + (float)isRun, 1.f);
-
 		// =================플레이어 키 입력 및 애니메이션=================
 		if (owner->animator->End())
 		{
@@ -75,6 +61,19 @@ namespace FSM
 				return;
 			}
 		}
+		// =================공격 히트박스 관련=================
+		hitBox->gameObject->transform->position = owner->bodyActor->transform->WorldPosition();
+		if (owner->animator->IndexEnter(2)) hitBox->gameObject->SetActive(true);
+		if (owner->animator->IndexEnter(4)) hitBox->gameObject->SetActive(false);
+
+		// =================플레이어 이동 연산=================
+		if(!isBackstep)
+			owner->SetMoveDirect();
+		owner->zPos += owner->gravity * Time::deltaTime; 
+		owner->gravity += owner->weight * owner->gravityScale * Time::deltaTime;
+		owner->gameObject->transform->position +=
+			owner->dirVector * owner->moveSpd *
+			Time::deltaTime * Vector2(1.f + (float)isRun, 1.f);
 	}
 	void SwordManJumpAttack::StateExit()
 	{
