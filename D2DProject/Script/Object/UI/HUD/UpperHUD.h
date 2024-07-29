@@ -17,6 +17,7 @@ namespace HUD
 
 		SpriteRenderer2D* hpBar;
 		SpriteRenderer2D* mpBar;
+		SpriteRenderer2D* head;
 		CharactorCore* targetObject;
 		SkillCoolHUD* coolBar[20];
 

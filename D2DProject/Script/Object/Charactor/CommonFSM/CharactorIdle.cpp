@@ -17,7 +17,8 @@ namespace FSM
 	void CharactorIdle::StateUpdate()
 	{
 		if (GameMode::curState == GameProcess::Ready ||
-			GameMode::curState == GameProcess::Start)
+			GameMode::curState == GameProcess::Start ||
+			GameMode::curState == GameProcess::Result)
 		{
 			if (owner->TriggerKeyHold(owner->input.right))
 				owner->bodyActor->transform->scale.x = 1.f;
@@ -76,6 +77,11 @@ namespace FSM
 				owner->dirVector.y = 1;
 				return;
 			}
+		}
+		else if (GameMode::curState == GameProcess::End)
+		{
+			if(GameMode::CheckWinner() == owner)
+				FSM->ChangeState("Win");
 		}
 	}
 

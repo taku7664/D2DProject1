@@ -56,7 +56,7 @@ void CollisionManager::SetCollisionID(Collider* left, Collider* right, bool enab
 		collisionID.left = left->GetID();
 		collisionID.right = right->GetID();
 	}
-	
+
 
 	// 이전 충돌정보를 검색한다.
 	auto iter = m_collisionMap.find(collisionID.id);
@@ -112,7 +112,7 @@ void CollisionManager::IterateCollisionLayer()
 				{
 					// 순회할 오른쪽레이어의 오브젝트 리스트를 가져옴
 					auto& rightList = tempLayer[rightIndex]->GetObjectList();
-					// 자기자신을 검사하는 것은 피해야한다. 또한 right오브젝트는 left의 다음에 와야한다. (누차 말하지만 중복검사를 피하기 위함).
+					// 자기자신을 검사하는 것은 피해야한다. 또한 right오브젝트는 left의 다음에 와야한다.
 					// left레이어와 right레이어가 같으면 right반복자는 left의 다음노드를 가르키게 한다.(std::next()함수 몰랐는데 gpt덕에 앎 ㄳ)
 					// left레이어와 right레이어가 같지 않으면 right반복자는 오브젝트 리스트의 처음을 가리키면 된다.
 					auto _right = (leftIndex == rightIndex) ? std::next(_left) : rightList.begin();
@@ -123,8 +123,8 @@ void CollisionManager::IterateCollisionLayer()
 						Actor* right = dynamic_cast<Actor*>((*_right));
 						if (right)
 						{
-							if(left->GetState() == GameState::Active && right->GetState() == GameState::Active)
-							CheckCollider(left, right);
+							if (left->GetState() == GameState::Active && right->GetState() == GameState::Active)
+								CheckCollider(left, right);
 							//Debug.Log(std::to_string(collisionCount) + (collisionCount >= 10 ? "" : " ") +
 								//"st CollisionCheck    " + left->GetName() + " : " + right->GetName());
 						}
@@ -138,46 +138,53 @@ void CollisionManager::IterateCollisionLayer()
 
 void CollisionManager::CheckCollider(Actor* _left, Actor* _right)
 {
-
 	collisionCount++; // 그냥 충돌체크를 몇번하는지 누적
 
-	// 오브젝트의 콜라이더를 받아온다.
-	Collider* _leftCollider = _left->GetComponent<Collider>();
-	Collider* _rightCollider = _right->GetComponent<Collider>();
+	std::vector<Collider*> _leftcolliders = _left->GetComponentList<Collider>(ComponentType::BoxCollider2D);
+	std::vector<Collider*> _rightcolliders = _right->GetComponentList<Collider>(ComponentType::BoxCollider2D);
 
-	// 둘다 콜라이더가 있을 시에만 검사를 한다.
-	if (_leftCollider && _rightCollider)
+	for (Collider* _leftCollider : _leftcolliders)
 	{
-		// ID값을 통해 서로의 충돌상태를 확인
-		bool check = GetCollisionID(_leftCollider, _rightCollider);
+		for (Collider* _rightCollider : _rightcolliders)
+		{
 
-		if (CheckCollision(_leftCollider, _rightCollider))
-		{
-			// 충돌중이지 않았으면 Enter
-			if (check == false)
+			// ID값을 통해 서로의 충돌상태를 확인
+			bool check = GetCollisionID(_leftCollider, _rightCollider);
+
+			if (CheckCollision(_leftCollider, _rightCollider))
 			{
-				_leftCollider->OnCollisionEnter(_right);
-				_rightCollider->OnCollisionEnter(_left);
-				SetCollisionID(_leftCollider, _rightCollider, true);
+				// 충돌중이지 않았으면 Enter
+				if (check == false)
+				{
+					_leftCollider->OnCollisionEnter(_right);
+					_rightCollider->OnCollisionEnter(_left);
+					SetCollisionID(_leftCollider, _rightCollider, true);
+				}
+				// 이미 충돌중이었으면 Stay
+				else if (check == true)
+				{
+					_leftCollider->OnCollisionStay(_right);
+					_rightCollider->OnCollisionStay(_left);
+				}
 			}
-			// 이미 충돌중이었으면 Stay
-			else if (check == true)
+			else
 			{
-				_leftCollider->OnCollisionStay(_right);
-				_rightCollider->OnCollisionStay(_left);
+				// 충돌하지 않았는데 이전 틱에 충돌중이었으면 Exit
+				if (check == true)
+				{
+					_leftCollider->OnCollisionExit(_right);
+					_rightCollider->OnCollisionExit(_left);
+					SetCollisionID(_leftCollider, _rightCollider, false);
+				}
 			}
 		}
-		else
-		{
-			// 충돌하지 않았는데 이전 틱에 충돌중이었으면 Exit
-			if (check == true)
-			{
-				_leftCollider->OnCollisionExit(_right);
-				_rightCollider->OnCollisionExit(_left);
-				SetCollisionID(_leftCollider, _rightCollider, false);
-			}
-		}
+		
 	}
+
+	// 오브젝트의 콜라이더를 받아온다.
+	//Collider* _leftCollider = _left->GetComponent<Collider>();
+	//Collider* _rightCollider = _right->GetComponent<Collider>();
+
 }
 
 bool CollisionManager::CheckCollision(Collider* _left, Collider* _right)

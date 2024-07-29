@@ -33,6 +33,14 @@ LoadSound::Bwanga::Bwanga()
 	group = BackGround;
 }
 
+LoadSound::Room::Room()
+{
+	_key = L"Room";
+	_path = L"Sound/BG/pvp_room.mp3";
+	isLoop = true;
+	group = BackGround;
+}
+
 LoadSound::Run1::Run1()
 {
 	_key = L"Run1";

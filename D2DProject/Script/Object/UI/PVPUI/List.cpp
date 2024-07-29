@@ -28,7 +28,7 @@ namespace PVPUI
 				Actor* player;
 				if(GameMode::playerCount % 2 == 0)
 					player = GameMode::AddPlayer<Player, SwordMan>(WorldManager::GetActiveWorld());
-				else player = GameMode::AddPlayer<Player, Gunner>(WorldManager::GetActiveWorld());
+				else player = GameMode::AddPlayer<AI, SwordMan>(WorldManager::GetActiveWorld());
 				IMap* map = FindObject<Actor>("Map", LayerTag::Map)->GetComponent<IMap>();
 				Vector2 spawnPos = map->spawnPoint[rand() % map->spawnPoint.size()];
 				player->transform->position = spawnPos;

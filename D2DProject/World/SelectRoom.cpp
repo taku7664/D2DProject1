@@ -1,9 +1,6 @@
 #include "SelectRoom.h"
-#include "Data/Resource/LoadSpriteData.h"
-#include "System/GameMode.h"
-
+#include "Contents.h"
 #include "../Script/Object/UI/PVPUI/PVPList.h"
-
 #include "Script/Map/Pup.h"
 
 void SelectRoom::WorldLoad()
@@ -27,10 +24,12 @@ void SelectRoom::WorldEnter()
 		actor = CreateObject<Actor>("pvp_list", LayerTag::UI, ObjectTag::UI);
 		actor->AddComponent<PVPUI::PVPList>();
 	}
+	GameManager::BgmPlayer->Play(GameManager::roomBgm);
 }
 
 void SelectRoom::WorldExit()
 {
+	GameManager::BgmPlayer->Stop();
 	LoadSprite::Pup_BackGround().Release();
 	LoadSprite::Pup_Map().Release();
 }

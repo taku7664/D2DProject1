@@ -31,7 +31,7 @@ void DemoApp::LoadWorld()
 {
 	WorldManager::CreateWorld<MainTitle>("Title", WorldTag::Title);
 	WorldManager::CreateWorld<SelectRoom>("SelectRoom", WorldTag::Play);
-	WorldManager::ChangeWorld("Title");
+	//WorldManager::ChangeWorld("Title");
 	WorldManager::ChangeWorld("SelectRoom");
 }
 

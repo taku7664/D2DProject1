@@ -21,6 +21,7 @@ public:
 
 	static GameProcess curState;
 	static std::vector<Actor*> playerList;
+	static std::vector<CharactorCore*> deadList;
 	static int   playerCount;
 
 	static float skillRangePer;
@@ -29,7 +30,7 @@ public:
 
 	static bool isEnd;
 
-	static bool CheckGameEnd(); 
+	static CharactorCore* CheckWinner();
 
 	template <typename T1, typename T2>
 	static Actor* AddPlayer(World* _world)

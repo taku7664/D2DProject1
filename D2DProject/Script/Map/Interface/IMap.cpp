@@ -1,4 +1,5 @@
 #include "IMap.h"
+#include "Contents.h"
 #include "../../CameraController.h"
 
 void IMap::Start()

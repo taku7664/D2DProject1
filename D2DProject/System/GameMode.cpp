@@ -1,28 +1,33 @@
 #include "GameMode.h"
 #include "../Script/Object/Charactor/CharactorCore.h"
 
-GameProcess GameMode::curState = GameProcess::Ready;
-
-std::vector<Actor*> GameMode::playerList{};
-int   GameMode::playerCount = 0;
+GameProcess                 GameMode::curState = GameProcess::Ready;
+std::vector<Actor*>         GameMode::playerList{};
+std::vector<CharactorCore*> GameMode::deadList{};
+int                         GameMode::playerCount = 0;
 
 float GameMode::atkSpeedPer = 1.f;
 float GameMode::movSpeedPer = 1.f;
-float GameMode::skillRangePer = 1.5f;
+float GameMode::skillRangePer = 1.0f;
 bool GameMode::isEnd = false;
 
-bool GameMode::CheckGameEnd()
+CharactorCore* GameMode::CheckWinner()
 {
     int count = 0;
+    CharactorCore* temp = nullptr;
     for (Actor* p : playerList)
     {
         CharactorCore* core = p->GetComponent<CharactorCore>();
-        if (core->hp._cur <= 0.f) ++count;
+        if (core->hp._cur > 0.f)
+        {
+            ++count;
+            temp = core;
+        }
     }
-    if (count <= 1)
+    if (count == 1)
     {
         isEnd = true;
-        return true;
+        return temp;
     }
-    else return false;
+    else return nullptr;
 }

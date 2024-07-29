@@ -1,6 +1,5 @@
 #include "PVPMap.h"
-#include "System/GameMode.h"
-#include "System/GameManager.h"
+#include "Contents.h"
 #include "Script/PlayerZoomer.h"
 #include "Script/Map/Interface/IMap.h"
 
@@ -10,6 +9,9 @@ void PVPMap::WorldLoad()
 
 void PVPMap::WorldDestroy()
 {
+	Clear(false);
+	GameMode::isEnd = false;
+	GameManager::BgmPlayer->Stop();
 }
 
 void PVPMap::WorldEnter()
@@ -34,10 +36,9 @@ void PVPMap::WorldEnter()
 		else core->bodyActor->transform->scale.x = 1.f;
 	}
 	GameManager::timer->SetTimer(240);
+	GameManager::BgmPlayer->Play(GameManager::bgms[Random::Range(0, GameManager::bgms.size() - 1)]);
 }
 
 void PVPMap::WorldExit()
 {
-	Clear(false);
-	GameMode::isEnd = false;
 }

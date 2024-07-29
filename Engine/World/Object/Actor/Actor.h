@@ -11,6 +11,7 @@
 #include "../../../Component/Rednerer/SpriteRenderer2D.h"
 #include "../../../Component/Rednerer/Animator2D.h"
 #include "../../../Component/Rednerer/RectRenderer.h"
+#include "../../../Component/Rednerer/LineRenderer.h"
 // ColliderComponent
 #include "../../../Component/Collider/BoxCollider2D.h"
 #include "../../../Component/Collider/CircleCollider2D.h"
@@ -18,6 +19,7 @@
 class Component;
 class Layer;
 class Object;
+class LineRenderer;
 
 class Actor
 	: public Object
@@ -61,6 +63,17 @@ public:
 			}
 		}
 		return nullptr;
+	}
+	template <typename T>
+	std::vector<T*> GetComponentList(ComponentType _type = (ComponentType)0)
+	{
+		std::vector<T*> tempList; 
+		for (Component* comp : m_componentList[(int)_type]) {
+			if (T* cast = dynamic_cast<T*>(comp)) {
+				tempList.push_back(cast);
+			}
+		}
+		return tempList;
 	}
 
 	void		SetActive(bool _val);

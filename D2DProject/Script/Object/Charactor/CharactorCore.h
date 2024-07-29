@@ -16,8 +16,10 @@ enum class CharactorState
 	Die,
 	Attack,
 	Skill,
+	Win,
 	SIZE
 };
+
 
 class CharactorCore
 	: public IObjectCore

@@ -3,6 +3,11 @@
 void AI::Start()
 {
 	__super::Start();
+
+	controller = gameObject->AddComponent<AI_SwordManController>();
+
+	targetRay = gameObject->AddComponent<LineRenderer>();
+	target = FindObject<Actor>("Player0")->GetComponent<IObjectCore>();
 }
 
 void AI::Update()
@@ -16,7 +21,7 @@ void AI::LateUpdate()
 	ResetKey();
 }
 
-void AI::GetKey(bool _down, int _key)
+void AI::GetKey(int _key, bool _down)
 {
 	// 딜레이 없게 하려고 
 	aiKeys[_key].IsDown = false;
@@ -50,15 +55,15 @@ void AI::ResetKey()
 
 bool AI::TriggerKeyDown(int _trigger)
 {
-	return false;
+	return aiKeys[_trigger].IsDown;
 }
 
 bool AI::TriggerKeyHold(int _trigger)
 {
-	return false;
+	return aiKeys[_trigger].IsHold;
 }
 
 bool AI::TriggerKeyUp(int _trigger)
 {
-	return false;
+	return aiKeys[_trigger].IsUp;
 }

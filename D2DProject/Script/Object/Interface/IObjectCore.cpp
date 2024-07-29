@@ -12,6 +12,7 @@ void IObjectCore::Start()
 
 void IObjectCore::Update()
 {
+	pvpInfo.Update();
 }
 
 void IObjectCore::LateUpdate()

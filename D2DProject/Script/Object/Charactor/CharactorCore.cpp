@@ -59,6 +59,12 @@ void CharactorCore::LateUpdate()
 	{
 		mp._cur = 0.f;
 	}
+	// 대기실에선 상시 풀피 회복
+	if (GameMode::curState == GameProcess::Ready)
+	{
+		hp._cur = hp._max;
+		mp._cur = mp._max;
+	}
 }
 
 void CharactorCore::UpdateCommandQueue()

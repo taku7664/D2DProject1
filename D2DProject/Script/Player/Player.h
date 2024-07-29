@@ -4,19 +4,12 @@
 class CameraController;
 class CharactorCore;
 
-struct AIKeys
-{
-
-};
-
 class Player
 	: public CharactorCore
 {
 public:
 
 	int inputID = -1;
-
-	CameraController*    camera;  // 메인카메라 뷰
 	
 	void Start();
 	void Update();

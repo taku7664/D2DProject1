@@ -237,6 +237,15 @@
     <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorDie.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorWin.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Object\UI\PVPUI\ResultUI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\AI\AI_SwordManController.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\Object\ObjectData.h">
@@ -459,6 +468,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorDie.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorWin.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\UI\PVPUI\ResultUI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\AI\AI_SwordManController.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

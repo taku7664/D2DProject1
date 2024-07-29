@@ -71,7 +71,6 @@ namespace FSM
 				owner->isAirial = false;
 				owner->zPos = 0.f;
 				owner->gravity = 0.f;
-				owner->velocity = { 0.f, 0.f };
 				FSM->ChangeState("Idle");
 				return;
 			}

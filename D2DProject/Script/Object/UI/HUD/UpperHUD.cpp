@@ -11,6 +11,14 @@ void HUD::UpperHUD::Start()
 	gameObject->transform->position = Vector2(0, 0);
 
 	Actor* ui;
+	ui = CreateObject<Actor>("Head", LayerTag::UI, ObjectTag::UI);
+	ui->transform->SetParent(gameObject->transform);
+	ui->transform->position = Vector2(10, 30);
+	ui->depthsLevel = 5;
+	head = ui->AddComponent<SpriteRenderer2D>();
+	head->SetSprite(LoadSprite::HeadSheet().Load());
+	head->centerOffset = Vector2(-head->size.x * 0.5f, 0.f);
+
 	ui = CreateObject<Actor>("HPBar", LayerTag::UI, ObjectTag::UI);
 	ui->transform->SetParent(gameObject->transform);
 	ui->transform->position = Vector2(51, 33);
@@ -77,6 +85,7 @@ void HUD::UpperHUD::OnEnable()
 {
 	hpBar->gameObject->SetActive(true);
 	mpBar->gameObject->SetActive(true);
+	head->gameObject->SetActive(true);
 	for (auto sk : coolBar)
 		sk->gameObject->SetActive(true);
 }
@@ -85,6 +94,7 @@ void HUD::UpperHUD::OnDisable()
 {
 	hpBar->gameObject->SetActive(false);
 	mpBar->gameObject->SetActive(false);
+	head->gameObject->SetActive(false);
 	for (auto sk : coolBar)
 		sk->gameObject->SetActive(false);
 }

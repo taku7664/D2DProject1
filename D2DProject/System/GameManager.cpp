@@ -4,12 +4,20 @@
 
 FadeRect* GameManager::fader = nullptr;
 HUD::Timer* GameManager::timer = nullptr;
+FMODPlayer* GameManager::BgmPlayer;
+std::vector<Resource::FMODSound*> GameManager::bgms;
+Resource::FMODSound* GameManager::roomBgm;
 
 GameManager::GameManager()
 {
 	// BackGroundSound
+	roomBgm = LoadSound::Room().Load();
+	bgms.push_back(LoadSound::Bwanga().Load());
+	bgms.push_back(LoadSound::Odesa().Load());
+	bgms.push_back(LoadSound::Town().Load());
+	bgms.push_back(LoadSound::Pub().Load());
 	BgmPlayer = CreateObject<Actor>("BgmPlayer")->AddComponent<FMODPlayer>();
-	BgmPlayer->Play(LoadSound::Odesa().Load());
+	//BgmPlayer->Play(bgms[Random::Range(0, bgms.size() - 1)]);
 
 	for (int i = 1; i <= 6; i++)
 	{

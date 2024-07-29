@@ -7,6 +7,7 @@
 #include "../CommonFSM/CharactorRun.h"
 #include "../CommonFSM/CharactorHit.h"
 #include "../CommonFSM/CharactorDie.h"
+#include "../CommonFSM/CharactorWin.h"
 #include "FSM/SwordManJump.h"
 #include "FSM/SwordManBackStep.h"
 #include "FSM/SwordManBasicAttack1.h"
@@ -43,12 +44,14 @@ void SwordMan::Initialize()
 	core->soundPlayer->AddAudio("Bassicattack3",		LoadSound::Voice_SwordManBassicAttack3().Load());
 	core->soundPlayer->AddAudio("DashAttack",			LoadSound::Voice_SwordManDashAttack().Load());
 	core->soundPlayer->AddAudio("Die",					LoadSound::Voice_SwordManDie().Load());
+	core->soundPlayer->AddAudio("Win",					LoadSound::Voice_HardAttackVoice1().Load());
 
 	core->animator->AddAnimation("Idle",			LoadAnimation::SwordManIdle().Load());
 	core->animator->AddAnimation("Walk",			LoadAnimation::SwordManWalk().Load());
 	core->animator->AddAnimation("Run",			    LoadAnimation::SwordManRun().Load());
 	core->animator->AddAnimation("Jump",			LoadAnimation::SwordManJump().Load());
 	core->animator->AddAnimation("Hit",				LoadAnimation::SwordManHit().Load());
+	core->animator->AddAnimation("Win",				LoadAnimation::SwordManWin().Load());
 	core->animator->AddAnimation("BasicAttack1",    LoadAnimation::SwordManBasicAttack1().Load());
 	core->animator->AddAnimation("BasicAttack2",    LoadAnimation::SwordManBasicAttack2().Load());
 	core->animator->AddAnimation("BasicAttack3",    LoadAnimation::SwordManBasicAttack3().Load());
@@ -69,6 +72,7 @@ void SwordMan::Initialize()
 	core->fsm->AddState<FSM::SwordManJump>("Jump");
 	core->fsm->AddState<FSM::SwordManBackStep>("BackStep");
 	core->fsm->AddState<FSM::CharactorDie>("Die");
+	core->fsm->AddState<FSM::CharactorWin>("Win");
 	core->fsm->AddState<FSM::SwordManBasicAttack1>("BasicAttack1");
 	core->fsm->AddState<FSM::SwordManBasicAttack2>("BasicAttack2");
 	core->fsm->AddState<FSM::SwordManBasicAttack3>("BasicAttack3");

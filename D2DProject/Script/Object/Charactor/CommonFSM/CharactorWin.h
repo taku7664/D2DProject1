@@ -3,14 +3,10 @@
 
 namespace FSM
 {
-	class CharactorDie
+	class CharactorWin
 		: public ICharactorFSM
 	{
-	private:
 	public:
-		float startJump;
-		float standTime;
-		void Start();
 		void StateEnter();
 		void StateUpdate();
 		void StateExit();

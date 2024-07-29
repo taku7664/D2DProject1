@@ -78,6 +78,23 @@ namespace LoadAnimation
         };
     }
 
+    SwordManWin::SwordManWin()
+    {
+        _key = L"A_SwordManWin";
+        _spriteKey = L"S_SwordManSheet2";
+        _data = {
+            {88, 0.5f, Vector2(17,0)},
+            {87, 0.5f, Vector2(17,0)},
+            {89, 0.5f, Vector2(17,0)},
+            {90, 0.5f, Vector2(17,0)},
+            {91, 0.5f, Vector2(17,0)},
+            {92, 0.5f, Vector2(17,0)},
+            {93, 0.5f, Vector2(17,0)},
+            {94, 0.5f, Vector2(17,0)},
+            {95, 4.0f, Vector2(17,0)}
+        };
+    }
+
     SwordManBasicAttack1::SwordManBasicAttack1()
     {
         _key = L"A_SwordManBasicAttack1";

@@ -142,6 +142,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Script\AI\AI_SwordManController.cpp" />
+    <ClCompile Include="Script\Object\UI\PVPUI\ResultUI.cpp" />
+    <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorWin.cpp" />
     <ClCompile Include="Script\Object\Charactor\CommonFSM\CharactorDie.cpp" />
     <ClCompile Include="Data\Object\ObjectData.cpp" />
     <ClCompile Include="Data\Resource\LoadGunnerAnimation.cpp" />
@@ -218,6 +221,9 @@
     <ClCompile Include="World\SelectRoom.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Script\AI\AI_SwordManController.h" />
+    <ClInclude Include="Script\Object\UI\PVPUI\ResultUI.h" />
+    <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorWin.h" />
     <ClInclude Include="Script\Object\Charactor\CommonFSM\CharactorDie.h" />
     <ClInclude Include="Contents.h" />
     <ClInclude Include="Data\Object\ObjectData.h" />

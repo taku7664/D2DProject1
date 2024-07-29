@@ -13,7 +13,9 @@ public:
 	GameManager();
 	virtual ~GameManager();
 
-	FMODPlayer*			BgmPlayer;
+	static FMODPlayer*			BgmPlayer;
+	static std::vector<Resource::FMODSound*> bgms;
+	static Resource::FMODSound* roomBgm;
 	Actor*				HUDs;
 	static FadeRect*	fader;
 	static HUD::Timer*  timer;

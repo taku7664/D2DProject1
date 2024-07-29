@@ -28,6 +28,7 @@ namespace LoadSound
 	struct Pub : public LoadSoundData { Pub(); };
 	struct Town : public LoadSoundData { Town(); };
 	struct Bwanga : public LoadSoundData { Bwanga(); };
+	struct Room : public LoadSoundData { Room(); };
 
 	// Extra
 	struct Run1 : public LoadSoundData { Run1(); };

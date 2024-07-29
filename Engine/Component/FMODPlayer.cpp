@@ -37,6 +37,8 @@ void FMODPlayer::Stop()
 {
 	if (m_channel)
 	{
+		m_channel->stop();
+		m_channel = nullptr;
 	}
 }
 

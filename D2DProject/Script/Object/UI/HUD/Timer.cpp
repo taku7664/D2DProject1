@@ -1,5 +1,5 @@
 #include "Timer.h"
-#include "System/GameMode.h"
+#include "Contents.h"
 #include "Data/Resource/LoadSpriteData.h"
 
 void HUD::Timer::Start()
@@ -20,6 +20,10 @@ void HUD::Timer::Start()
 }
 void HUD::Timer::Update()
 {
+	if (GameMode::isEnd)
+	{
+		isStart = false;
+	}
 	if (isStart)
 	{
 		timer -= Time::deltaTime;

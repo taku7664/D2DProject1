@@ -20,6 +20,7 @@ void FSM::CharactorHit::StateUpdate()
 	//=================공중에 뜬 상태의 중력연산=================
 	if (isAirbon)
 	{
+		owner->pvpInfo.tempAir += Time::deltaTime;
 		owner->animator->Play();
 		owner->zPos += owner->gravity * Time::deltaTime;
 		owner->gravity += owner->weight * owner->gravityScale * Time::deltaTime;
@@ -46,6 +47,9 @@ void FSM::CharactorHit::StateUpdate()
 					if (standTime >= 0.5f)
 					{
 						FSM->ChangeState("Idle");
+						owner->pvpInfo.tempCombo = 0;
+						owner->pvpInfo.tempDmg = 0.f;
+						owner->pvpInfo.tempAir = 0.f;
 						return;
 					}
 				}

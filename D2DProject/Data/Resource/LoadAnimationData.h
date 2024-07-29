@@ -51,6 +51,11 @@ namespace LoadAnimation
         SwordManHit();
     };
 
+    struct SwordManWin : public LoadAnimationData
+    {
+        SwordManWin();
+    };
+
     // SwordMan - Attack
     struct SwordManBasicAttack1 : public LoadAnimationData
     {

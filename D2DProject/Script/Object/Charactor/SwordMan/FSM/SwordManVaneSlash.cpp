@@ -43,6 +43,7 @@ void FSM::SwordManVaneSlash::StateUpdate()
 			{
 				owner->animator->ChangeAnimation("Attack3", false);
 				owner->soundPlayer->Play(voices[1]);
+				owner->body->SetState(GameState::Passive);
 				if (slashEffect) slashEffect->animator->SetState(GameState::Passive);
 			}
 		}
@@ -67,5 +68,6 @@ void FSM::SwordManVaneSlash::StateUpdate()
 void FSM::SwordManVaneSlash::StateExit()
 {
 	slashEffect = nullptr;
+	owner->body->SetState(GameState::Active);
 	if (slashEffect) slashEffect->gameObject->SetDestroy();
 }
