@@ -151,6 +151,7 @@
     <ClCompile Include="Data\Skill\LoadSwordManSkillData.cpp" />
     <ClCompile Include="Data\Skill\SkillData.cpp" />
     <ClCompile Include="DemoApp.cpp" />
+    <ClCompile Include="Data\Resource\LoadSoundData.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Script\AI\AI.cpp" />
     <ClCompile Include="Script\CameraController.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Data\Skill\LoadSwordManSkillData.h" />
     <ClInclude Include="Data\Skill\SkillData.h" />
     <ClInclude Include="DemoApp.h" />
+    <ClInclude Include="Data\Resource\LoadSoundData.h" />
     <ClInclude Include="Script\AI\AI.h" />
     <ClInclude Include="Script\CameraController.h" />
     <ClInclude Include="Script\CommandQueue.h" />

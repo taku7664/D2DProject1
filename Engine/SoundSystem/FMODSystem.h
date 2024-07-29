@@ -7,12 +7,14 @@ public:
 
     static void Initialize();
     static void Update();
-    static void SetGroup(int _num);
+    static void AddGroup(const char* _groupName);
 
     static FMOD::System* GetSystem() { return m_system; }
-    static FMOD::ChannelGroup* GetGroup(int _group) { return m_channelGroups[_group]; }
-
-    static void Play(std::wstring _key, int _group, bool _isLoop);
+    static FMOD::ChannelGroup* GetGroup(int _group) 
+    {
+        if (_group >= m_channelGroups.size()) assert(false && "ChnnelGroup Range Over");
+        else return m_channelGroups[_group];
+    }
 
 private:
 

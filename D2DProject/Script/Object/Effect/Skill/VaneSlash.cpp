@@ -12,6 +12,8 @@ void VaneSlash::Set(IObjectCore* _owner, AttackInfo& _info)
 	
 	HitBox->offset = { -60.f * gameObject->transform->scale.x, 80.f };
 	HitBox->size = { 150,130 };
+	HitBox->offset.y *= GameMode::skillRangePer;
+	HitBox->size *= GameMode::skillRangePer;
 }
 
 void VaneSlash::Start()

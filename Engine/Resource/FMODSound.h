@@ -7,7 +7,7 @@ namespace Resource
 		: public AudioClip
 	{
 	public:
-		FMODSound(const std::wstring& _key, const std::wstring& _path, ResourceType _type, int _group);
+		FMODSound(const std::wstring& _key, const std::wstring& _path, ResourceType _type, bool _isLoop, int _group);
 		//FMOD::Sound* GetSound();
 
 		void Play(FMOD::Channel** _channel);

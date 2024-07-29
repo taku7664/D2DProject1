@@ -11,10 +11,10 @@ void GameApp::Initialize(HINSTANCE _hinstance, int _width, int _height, const wc
 	HWND hwnd = InitializeWindow(_width, _height, _title);
 	if (!hwnd)
 		assert(false && "Fail - InitializeWindow");
+	FMODSystem::Initialize();
 	D2DRender::Initialize(hwnd);
 	Time::Initialize();
 	DynamicInput::Initialize(m_hinstance);
-	
 }	
 
 void GameApp::Run()
@@ -85,6 +85,7 @@ void GameApp::Update()
 {
 	if (gameManager) gameManager->Update();
 	WorldManager::Update();
+	FMODSystem::Update();
 }
 
 void GameApp::LateUpdate()

@@ -37,7 +37,7 @@ Resource::Animation2D* ResourceManager::AddAnimation2D(const std::wstring& _key,
 	return _anime;
 }
 
-Resource::FMODSound* ResourceManager::AddFMODSound(const std::wstring& _key, const std::wstring& _path, int _group)
+Resource::FMODSound* ResourceManager::AddFMODSound(const std::wstring& _key, const std::wstring& _path, bool isLoop, int _group)
 {
 	std::wstring temp = L"Asset/" + _path;
 	Resource::FMODSound* _audio = GetFMODSound(_key);
@@ -47,7 +47,7 @@ Resource::FMODSound* ResourceManager::AddFMODSound(const std::wstring& _key, con
 	}
 	else
 	{
-		_audio = new Resource::FMODSound(_key, temp, ResourceType::AudioClip, _group);
+		_audio = new Resource::FMODSound(_key, temp, ResourceType::AudioClip, isLoop, _group);
 		m_audioMap.insert(std::make_pair(_key, _audio));
 	}
 	return _audio;
@@ -99,6 +99,15 @@ bool ResourceManager::ReleaseAnimation2D(const std::wstring& _key)
 	if (it == m_animationMap.end())
 		return false;
 	m_animationMap.erase(it);
+	return true;
+}
+
+bool ResourceManager::ReleaseFMODSound(const std::wstring& _key)
+{
+	auto it = m_audioMap.find(_key);
+	if (it == m_audioMap.end())
+		return false;
+	m_audioMap.erase(it);
 	return true;
 }
 

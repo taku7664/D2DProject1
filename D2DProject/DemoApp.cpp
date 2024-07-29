@@ -1,5 +1,6 @@
 #include "DemoApp.h"
 #include "Data/Resource/LoadSpriteData.h"
+#include "Data/Resource/LoadSoundData.h"
 #include "World/MainTitle.h"
 #include "World/SelectRoom.h"
 #include "World/PVPMap_Pup.h"
@@ -36,9 +37,14 @@ void DemoApp::LoadWorld()
 
 void DemoApp::LoadResource()
 {
-	FMODSystem::SetGroup(GroupSize);
-	FMODSystem::Initialize();
-	ResourceManager::AddFMODSound(L"Odesa", L"Sound/odesa_new.ogg", BackGround);
+	FMODSystem::AddGroup("BackGround");
+	FMODSystem::AddGroup("Effect");
+	FMODSystem::AddGroup("Voice");
+
+	LoadSound::Odesa().Load();
+	LoadSound::Bwanga().Load();
+	LoadSound::Pub().Load();
+	LoadSound::Town().Load();
 
 	LoadSprite::SwordManSheet1().Load();
 	LoadSprite::SwordManSheet2().Load();

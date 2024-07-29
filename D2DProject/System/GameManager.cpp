@@ -7,9 +7,9 @@ HUD::Timer* GameManager::timer = nullptr;
 
 GameManager::GameManager()
 {
-
+	// BackGroundSound
 	BgmPlayer = CreateObject<Actor>("BgmPlayer")->AddComponent<FMODPlayer>();
-	BgmPlayer->SetAudio(L"Odesa");
+	BgmPlayer->SetAudio(L"Town");
 	BgmPlayer->Play();
 	BgmPlayer->SetVolume(0.05f);
 
