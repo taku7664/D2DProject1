@@ -3,10 +3,16 @@
 #include "../../CharactorCore.h"
 #include "SwordManJumpAttack.h"
 
-void FSM::SwordManBackStep::StateEnter()
+void FSM::SwordManBackStep::Start()
 {
 	clamp = 5;
+	__super::Start();
+}
+
+void FSM::SwordManBackStep::StateEnter()
+{
 	__super::StateEnter();
+	owner->soundPlayer->Play("BackStep");
 }
 
 void FSM::SwordManBackStep::StateUpdate()

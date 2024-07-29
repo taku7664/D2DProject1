@@ -39,6 +39,8 @@ public:
 	CommandQueue			commandQueue;	// 커맨드 큐
 	CustomInput				input;			// 사용자가 변경 가능하게끔 해주는 Input구조체. 기본값이 들어있다.
 
+	std::vector<Resource::FMODSound*> runSound;
+
 	// 무슨 키보드 입력 이벤트를 실행할 것인가? 
 	// (플레이어는 키보드를 트리거로 삼지만, AI는 자체적인 인공지능을 트리거로 사용해야 한다.)
 	virtual bool TriggerKeyDown(int _trigger) = 0;

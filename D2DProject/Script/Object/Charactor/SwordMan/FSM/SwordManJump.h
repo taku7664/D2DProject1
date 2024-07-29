@@ -8,6 +8,7 @@ namespace FSM
 	{
 	private:
 	public:
+		void Start();
 		void StateEnter();
 		void StateUpdate();
 	};

@@ -1,6 +1,6 @@
 #include "CharactorCore.h"
 #include "Script/CameraController.h"
-#include "Data/Resource/LoadSpriteData.h"
+#include "Contents.h"
 
 void CharactorCore::Start()
 {
@@ -171,4 +171,7 @@ void CharactorCore::OnCollisionEnter(Actor* _collision)
 void CharactorCore::LoadResource()
 {
 	LoadSprite::PlayerFoot().Load();
+	runSound.push_back(soundPlayer->AddAudio("Run1", LoadSound::Run1().Load()));
+	runSound.push_back(soundPlayer->AddAudio("Run2", LoadSound::Run2().Load()));
+	runSound.push_back(soundPlayer->AddAudio("Run3", LoadSound::Run3().Load()));
 }

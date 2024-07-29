@@ -113,8 +113,19 @@ bool ResourceManager::ReleaseFMODSound(const std::wstring& _key)
 
 void ResourceManager::Clear()
 {
-	// clear()로도 second값의 소멸자가 호출 된다네요? 
-	// 안댐 
+	for (auto it = m_spriteMap.begin(); it != m_spriteMap.end(); ++it)
+	{
+		delete it->second;
+	}
 	m_spriteMap.clear();
+	for (auto it = m_animationMap.begin(); it != m_animationMap.end(); ++it)
+	{
+		delete it->second;
+	}
 	m_animationMap.clear();
+	for (auto it = m_audioMap.begin(); it != m_audioMap.end(); ++it)
+	{
+		delete it->second;
+	}
+	m_audioMap.clear();
 }

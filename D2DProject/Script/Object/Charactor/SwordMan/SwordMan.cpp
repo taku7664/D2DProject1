@@ -29,7 +29,19 @@ void SwordMan::Initialize()
 
 	core->body->size = { 70.f, 60.f };
 	core->body->offset = { 0.f, 40.f };
-	
+
+	core->hitVoice.push_back(core->soundPlayer->AddAudio("Hit1", LoadSound::Voice_SwordManHit1().Load()));
+	core->hitVoice.push_back(core->soundPlayer->AddAudio("Hit2", LoadSound::Voice_SwordManHit2().Load()));
+	core->hitVoice.push_back(core->soundPlayer->AddAudio("Hit3", LoadSound::Voice_SwordManHit3().Load()));
+	core->soundPlayer->AddAudio("Jump",					LoadSound::Voice_SwordManJump().Load());
+	core->soundPlayer->AddAudio("BackStep",				LoadSound::Voice_SwordManBackStep().Load());
+	core->soundPlayer->AddAudio("JumpAttack1",			LoadSound::Voice_SwordManJumpAttack1().Load());
+	core->soundPlayer->AddAudio("JumpAttack2",			LoadSound::Voice_SwordManJumpAttack2().Load());
+	core->soundPlayer->AddAudio("Bassicattack1",		LoadSound::Voice_SwordManBassicAttack1().Load());
+	core->soundPlayer->AddAudio("Bassicattack2",		LoadSound::Voice_SwordManBassicAttack2().Load());
+	core->soundPlayer->AddAudio("Bassicattack3",		LoadSound::Voice_SwordManBassicAttack3().Load());
+	core->soundPlayer->AddAudio("DashAttack",			LoadSound::Voice_SwordManDashAttack().Load());
+
 	core->animator->AddAnimation("Idle",			LoadAnimation::SwordManIdle().Load());
 	core->animator->AddAnimation("Walk",			LoadAnimation::SwordManWalk().Load());
 	core->animator->AddAnimation("Run",			    LoadAnimation::SwordManRun().Load());
@@ -73,6 +85,7 @@ void SwordMan::Initialize()
 	core->skillSlot[0] = core->skillList[LoadSkill::UpperSlash().id];
 	core->skillSlot[1] = core->skillList[LoadSkill::HardAttack().id];
 	core->skillSlot[2] = core->skillList[LoadSkill::VaneSlash().id];
+
 }
 
 void SwordMan::Release()

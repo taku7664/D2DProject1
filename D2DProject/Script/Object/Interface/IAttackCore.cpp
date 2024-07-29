@@ -9,10 +9,9 @@ void IAttackCore::Set(IObjectCore* _owner, AttackInfo& _info)
 	collisionArr.clear();
 	owner = _owner;
 	HitBox = gameObject->AddComponent<BoxCollider2D>();
+	soundPlayer = gameObject->AddComponent<FMODPlayer>();
 	gameObject->transform->position = owner->gameObject->transform->position;
 	gameObject->transform->scale.x = owner->bodyActor->transform->scale.x;
-	gameObject->transform->scale *= GameMode::skillRangePer;
-
 	SetInfo(_info);
 }
 
@@ -54,13 +53,15 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 			if (it != collisionArr.end()) return;
 			// =================상태 변경 및 조건 검사=================
 			FSM::CharactorHit* fsm = destCore->fsm->ChangeStateAndReturn<FSM::CharactorHit>("Hit");
-			if (fsm->isAirbon == true && destCore->zPos == 0.f && !isLow) return;
+			if (fsm->isAirbon == true && destCore->zPos >= -10.f && !isLow) return;
 			// =================데미지 연산 과정=================
 			float resDamage = CalculateDamage(destCore);
 			// =================데미지 이펙트 출력=================
 			CreateDamageEffect(destCore, 1, resDamage);
 			// =================물리 처리 과정=================
 			CalculateVelocity(destCore);
+			// =================피격 사운드 출력=================
+			PlayHitSound();
 
 			collisionArr.push_back(destCore);
 		}
@@ -85,10 +86,11 @@ void IAttackCore::CreateDamageEffect(IObjectCore* _dest, int _type, int _dmg)
 void IAttackCore::CalculateVelocity(IObjectCore* _dest)
 {
 	FSM::CharactorHit* fsm = _dest->fsm->ChangeStateAndReturn<FSM::CharactorHit>("Hit");
+	fsm->HitEnter();
 
 	_dest->dirVector = Vector2(0, 0);
 	_dest->velocity = { vPower.x, vPower.y };
-	_dest->bodyActor->transform->scale.x = -gameObject->transform->scale.x;
+	_dest->bodyActor->transform->scale.x = -gameObject->transform->scale.x > 0.0 ? 1.f : -1.f;
 	_dest->dirVector.x = gameObject->transform->scale.x;
 
 	// 공중에 띄우는 스킬일 경우 중력 적용
@@ -128,4 +130,10 @@ void IAttackCore::CalculateVelocity(IObjectCore* _dest)
 		}
 	}
 	fsm->startJump = _dest->gravity;
+}
+
+void IAttackCore::PlayHitSound()
+{
+	if(!hitSounds.empty())
+		soundPlayer->Play(hitSounds[Random::Range(0, hitSounds.size() - 1)]);
 }

@@ -10,8 +10,20 @@ void FSM::CharactorRun::StateEnter()
 
 void FSM::CharactorRun::StateUpdate()
 {
+	if (owner->animator->IndexEnter(1))
+	{
+		owner->soundPlayer->Play(owner->runSound[Random::Range(0, owner->runSound.size() - 1)]);
+		owner->soundPlayer->SetVolume(2.f);
+	}
+
+	if (owner->animator->IndexEnter(5))
+	{
+		owner->soundPlayer->Play(owner->runSound[Random::Range(0, owner->runSound.size() - 1)]);
+		owner->soundPlayer->SetVolume(2.f);
+	}
+
 	if (ProcessQuickKey(false)) // Äü½½·Ô Ã³¸®
-		return;
+		return;	
 
 	if (owner->TriggerKeyHold(owner->input.x))
 	{

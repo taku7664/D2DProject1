@@ -7,16 +7,18 @@ class FMODPlayer
 {
 public:
 
-	void SetAudio(Resource::FMODSound* _sound);
-	void SetAudio(std::wstring _key);
+	Resource::FMODSound* AddAudio(std::string _key, Resource::FMODSound* _sound);
+	Resource::FMODSound* FindAudio(std::string _key);
 
-	void Play();
+	void Play(Resource::FMODSound* _sound);
+	void Play(std::string _key);
 	void Stop();
 	void SetVolume(float _volume);
 
 private:
 
-	Resource::FMODSound*	m_audio;
-	FMOD::Channel*			m_channel;
+	FMOD::Channel*		 m_channel;
+	std::unordered_map<std::string, Resource::FMODSound*> m_audioList;
+	
 
 };

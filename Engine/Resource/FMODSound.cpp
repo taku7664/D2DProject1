@@ -15,5 +15,6 @@ Resource::FMODSound::FMODSound(const std::wstring& _key, const std::wstring& _pa
 
 void Resource::FMODSound::Play(FMOD::Channel** _channel)
 {
-	m_system->playSound(m_sound, m_group, false, &*_channel);
+	if(_channel)
+		m_system->playSound(m_sound, m_group, false, &*_channel);
 }

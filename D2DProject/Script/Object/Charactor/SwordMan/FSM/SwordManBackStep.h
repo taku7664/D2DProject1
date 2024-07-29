@@ -7,6 +7,7 @@ namespace FSM
 		: public CharatorBackStep
 	{
 	public:
+		void Start();
 		void StateEnter();
 		void StateUpdate();
 		void StateExit() {}

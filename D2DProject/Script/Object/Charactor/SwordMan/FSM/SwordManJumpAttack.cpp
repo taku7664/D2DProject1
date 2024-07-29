@@ -14,6 +14,16 @@ namespace FSM
 		info.staggerTime = 0.0f;
 		info.vPower = Vector2(200.0f, 0.0f);
 		info.isLow = true;
+		int i = 1;
+		while (true)
+		{
+			Resource::FMODSound* sound = owner->soundPlayer->FindAudio("JumpAttack" + std::to_string(i++));
+			if (sound)
+			{
+				voices.push_back(sound);
+			}
+			else break;
+		}
 	}
 	void FSM::SwordManJumpAttack::StateEnter()
 	{
@@ -25,6 +35,8 @@ namespace FSM
 		hitBox->gameObject->SetActive(false);
 		hitBox->HitBox->size = Vector2(120, 140);
 		hitBox->HitBox->offset = Vector2(-50.f * owner->bodyActor->transform->scale.x, 60.f);
+
+		owner->soundPlayer->Play(voices[Random::Range(0, voices.size() - 1)]);
 	}
 
 	void FSM::SwordManJumpAttack::StateUpdate()

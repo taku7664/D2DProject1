@@ -2,20 +2,35 @@
 #include "FMODPlayer.h"
 #include "../Resource/Manager/ResourceManager.h"
 
-void FMODPlayer::SetAudio(Resource::FMODSound* _sound)
+Resource::FMODSound* FMODPlayer::AddAudio(std::string _key, Resource::FMODSound* _sound)
 {
-	if (!_sound) assert(false);
-	m_audio = _sound;
+	if (_sound == nullptr)
+		assert(false);
+
+	if (this->FindAudio(_key) != nullptr)
+		return nullptr;
+
+	m_audioList.insert(std::make_pair(_key, _sound));
+
+	return _sound;
 }
 
-void FMODPlayer::SetAudio(std::wstring _key)
+Resource::FMODSound* FMODPlayer::FindAudio(std::string _key)
 {
-		SetAudio(ResourceManager::GetFMODSound(_key));
+	auto it = m_audioList.find(_key);
+	if (it == m_audioList.end())
+		return nullptr;
+	return it->second;
 }
 
-void FMODPlayer::Play()
+void FMODPlayer::Play(Resource::FMODSound* _sound)
 {
-	m_audio->Play(&m_channel);
+	_sound->Play(&m_channel);
+}
+
+void FMODPlayer::Play(std::string _key)
+{
+	FindAudio(_key)->Play(&m_channel);
 }
 
 void FMODPlayer::Stop()

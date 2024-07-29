@@ -12,8 +12,11 @@ void VaneSlash::Set(IObjectCore* _owner, AttackInfo& _info)
 	
 	HitBox->offset = { -60.f * gameObject->transform->scale.x, 80.f };
 	HitBox->size = { 150,130 };
-	HitBox->offset.y *= GameMode::skillRangePer;
-	HitBox->size *= GameMode::skillRangePer;
+
+	hitSounds.push_back(LoadSound::VaneSlash_Flash().Load());
+	effectSounds.push_back(LoadSound::VaneSlash().Load());
+
+	soundPlayer->Play(effectSounds.front());
 }
 
 void VaneSlash::Start()
@@ -30,6 +33,7 @@ void VaneSlash::Update()
 		wave->target = collisionArr.front();
 		wave->Set(owner, LoadSkill::VaneSlash().GetInfo("Wave"));
 		HitBox->SetState(GameState::Passive);
+		soundPlayer->Play(hitSounds.front()); 
 	}
 	if (animator->IndexEnter(4))
 	{

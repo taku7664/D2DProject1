@@ -4,9 +4,13 @@
 
 namespace FSM
 {
-	void SwordManJump::StateEnter()
+	void SwordManJump::Start()
 	{
 		clamp = 3;
+		__super::Start();
+	}
+	void SwordManJump::StateEnter()
+	{
 		__super::StateEnter();
 	}
 	void SwordManJump::StateUpdate()

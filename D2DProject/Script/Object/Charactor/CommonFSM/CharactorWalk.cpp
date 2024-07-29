@@ -10,6 +10,18 @@ void FSM::CharactorWalk::StateEnter()
 
 void FSM::CharactorWalk::StateUpdate()
 {
+	if (owner->animator->IndexEnter(1))
+	{
+		owner->soundPlayer->Play(owner->runSound[Random::Range(0, owner->runSound.size() - 1)]);
+		owner->soundPlayer->SetVolume(1.5f);
+	}
+
+	if (owner->animator->IndexEnter(5))
+	{
+		owner->soundPlayer->Play(owner->runSound[Random::Range(0, owner->runSound.size() - 1)]);
+		owner->soundPlayer->SetVolume(1.5f);
+	}
+
 	if (ProcessQuickKey(false)) // Äü½½·Ô Ã³¸®
 		return;
 

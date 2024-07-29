@@ -1,6 +1,7 @@
 #include "CharactorIdle.h"
 #include "../CharactorCore.h"
 #include "System/GameMode.h"
+#include "Contents.h"
 
 namespace FSM
 {
@@ -35,6 +36,7 @@ namespace FSM
 			if (owner->TriggerKeyDown(owner->input.c))
 			{
 				FSM->ChangeState("Jump");
+				owner->soundPlayer->Play("Jump");
 				return;
 			}
 

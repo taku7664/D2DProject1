@@ -12,6 +12,14 @@ void VaneSlashWave::Set(IObjectCore* _owner, AttackInfo& _info)
 	HitBox->offset = { -130.f * gameObject->transform->scale.x, 60.f };
 	HitBox->size = { 280,100 };
 	HitBox->SetState(GameState::Passive);
+
+	gameObject->transform->scale *= GameMode::skillRangePer;
+	HitBox->offset.y *= GameMode::skillRangePer;
+	HitBox->size *= GameMode::skillRangePer;
+
+	hitSounds.push_back(LoadSound::VaneSlashHit().Load());
+	effectSounds.push_back(LoadSound::VaneSlashWind().Load());
+
 }
 
 void VaneSlashWave::Start()
@@ -38,6 +46,10 @@ void VaneSlashWave::Update()
 	target->gravity = 0.f;
 
 	// =================공격 히트박스 관련=================
+	if (animator->IndexEnter(2))
+	{
+		soundPlayer->Play(effectSounds.front());
+	}
 	if (animator->IndexEnter(7))
 		HitBox->SetState(GameState::Active);
 	else if (animator->IndexEnter(9))
@@ -59,5 +71,7 @@ void VaneSlashWave::Update()
 	if (animator->End())
 	{
 		Destroy(gameObject);
+		target->velocity.x = 150;
+		target->gravity = -100;
 	}
 }

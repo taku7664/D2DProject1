@@ -1,6 +1,7 @@
 #pragma once
 #include "ICharactorFSM.h"
 #include "Data/Skill/SkillData.h"
+#include "Contents.h"
 
 class IAttackCore;
 

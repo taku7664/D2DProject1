@@ -1,4 +1,5 @@
 #include "SwordManBasicAttack2.h"
+#include "Contents.h"
 #include "../../CharactorCore.h"
 #include "Script/Object/Interface/IAttackCore.h"
 
@@ -24,6 +25,8 @@ namespace FSM
 		hitBox->gameObject->SetActive(false);
 		hitBox->HitBox->size = Vector2(230, 100);
 		hitBox->HitBox->offset = Vector2(-30.f * owner->bodyActor->transform->scale.x, 60.f);
+
+		owner->soundPlayer->Play("Bassicattack2");
 	}
 
 	void FSM::SwordManBasicAttack2::StateUpdate()

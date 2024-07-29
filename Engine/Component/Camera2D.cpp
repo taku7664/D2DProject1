@@ -6,7 +6,7 @@
 #include "../Render/D2DRender.h"
 
 Camera2D::Camera2D()
-    : viewportPosition({ 0.f,0.f }),
+    : viewRectPosition({ 0.f,0.f }),
     viewportSize({ 0.f,0.f }),
     m_BackGroundColor(D2D1::ColorF(D2D1::ColorF::CadetBlue)),
     m_bitmap(nullptr)
@@ -69,8 +69,8 @@ void Camera2D::Render()
     m_bitmapRenderTarget->GetBitmap(&m_bitmap);
 
     // 메인 렌더타겟에 카메라를 들고있는 오브젝트의 transform 값을 기반으로 Drawbitmap을 한다.
-    D2D_RECT_F viewportRect = D2D1::RectF(viewportPosition.x, viewportPosition.y,
-        viewportPosition.x + viewportSize.width, viewportPosition.y + viewportSize.height);
+    D2D_RECT_F viewportRect = D2D1::RectF(viewRectPosition.x, viewRectPosition.y,
+        viewRectPosition.x + viewportSize.width, viewRectPosition.y + viewportSize.height);
 
     mainRenderTarget->DrawBitmap(m_bitmap, viewportRect);
 }
@@ -106,10 +106,10 @@ Vector2 Camera2D::ViewportPosition(Transform2D* _dest)
     Vector2 screenSize = ScreenSize();
     Vector2 screenPosition = ScreenPosition(_dest);
 
-    Vector2 viewportPosition = {
+    Vector2 viewRectPosition = {
         screenPosition.x / screenSize.x,
         screenPosition.y / screenSize.y
     };
 
-    return viewportPosition;
+    return viewRectPosition;
 }

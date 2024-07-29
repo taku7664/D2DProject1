@@ -13,10 +13,9 @@ namespace FSM
 		float count = 0.f;
 	public:
 
-		IObjectCore* targetCore = nullptr;
-
 		ISkillCore* slashEffect;
 
+		void Start();
 		void StateEnter();
 		void StateUpdate();
 		void StateExit();

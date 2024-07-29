@@ -24,6 +24,7 @@ namespace FSM
 		hitBox->gameObject->SetActive(false);
 		hitBox->HitBox->size = Vector2(130, 20);
 		hitBox->HitBox->offset = Vector2(-80.0f * owner->bodyActor->transform->scale.x, 60.f);
+		owner->soundPlayer->Play("DashAttack");
 	}
 
 	void SwordManDashAttack::StateUpdate()

@@ -17,6 +17,10 @@ public:
 	BoxCollider2D*				HitBox;
 	std::vector<IObjectCore*>	collisionArr;
 
+	FMODPlayer*					soundPlayer;
+	std::vector<Resource::FMODSound*> effectSounds;
+	std::vector<Resource::FMODSound*> hitSounds;
+
 	virtual void Set(IObjectCore* _owner, AttackInfo& _info);
 	void SetInfo(const AttackInfo& _info);
 
@@ -29,5 +33,6 @@ public:
 	float CalculateDamage(IObjectCore* _dest);
 	void CreateDamageEffect(IObjectCore* _dest, int _type, int _dmg);
 	void CalculateVelocity(IObjectCore* _dest);
+	void PlayHitSound();
 
 };

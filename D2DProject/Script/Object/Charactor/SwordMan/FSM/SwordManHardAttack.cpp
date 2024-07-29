@@ -1,15 +1,21 @@
 #include "SwordManHardAttack.h"
-#include "Data/Skill/LoadSwordManSkillData.h"
+#include "Contents.h"
 #include "../../CharactorCore.h"
 #include "../../../Effect/Skill/HardAttack.h"	
 
 namespace FSM
 {
-
+	void SwordManHardAttack::Start()
+	{
+		__super::Start();
+		voices.push_back(LoadSound::Voice_HardAttackVoice1().Load());
+		voices.push_back(LoadSound::Voice_HardAttackVoice2().Load());
+	}
 	void SwordManHardAttack::StateEnter()
 	{
 		owner->animator->ChangeAnimation("Attack1", false);
 		owner->state = CharactorState::Attack;
+		owner->soundPlayer->Play(voices[Random::Range(0, voices.size() - 1)]);
 	}
 
 	void SwordManHardAttack::StateUpdate()

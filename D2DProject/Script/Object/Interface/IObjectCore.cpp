@@ -6,6 +6,7 @@ void IObjectCore::Start()
 	bodyActor = CreateObject<BodyActor>("Body", LayerTag::Object, ObjectTag::BodyBox);
 	foot = gameObject->AddComponent<BoxCollider2D>();
 	body = bodyActor->AddComponent<BoxCollider2D>();
+	soundPlayer = gameObject->AddComponent<FMODPlayer>();
 	bodyActor->transform->SetParent(gameObject->transform);
 }
 

@@ -22,4 +22,8 @@ public:
 	BoxCollider2D*		foot;
 	FiniteStateMachine* fsm;
 
+	FMODPlayer*			soundPlayer;
+
+	std::vector<Resource::FMODSound*> hitVoice;
+
 };

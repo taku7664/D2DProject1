@@ -16,5 +16,6 @@ namespace FSM
 		void StateEnter();
 		void StateUpdate();
 		void StateExit();
+		void HitEnter(); // 맞을 때 마다 호출 됨
 	};
 }

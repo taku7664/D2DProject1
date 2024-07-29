@@ -1,5 +1,5 @@
 #include "GameManager.h"
-#include "Data/Resource/LoadSpriteData.h"
+#include "Contents.h"
 #include "GameMode.h"
 
 FadeRect* GameManager::fader = nullptr;
@@ -9,9 +9,7 @@ GameManager::GameManager()
 {
 	// BackGroundSound
 	BgmPlayer = CreateObject<Actor>("BgmPlayer")->AddComponent<FMODPlayer>();
-	BgmPlayer->SetAudio(L"Town");
-	BgmPlayer->Play();
-	BgmPlayer->SetVolume(0.05f);
+	BgmPlayer->Play(LoadSound::Odesa().Load());
 
 	for (int i = 1; i <= 6; i++)
 	{

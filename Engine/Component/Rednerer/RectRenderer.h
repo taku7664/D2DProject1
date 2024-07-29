@@ -23,7 +23,7 @@ private:
 
 	D2D1_COLOR_F m_linecolor; // 선
 	D2D1_COLOR_F m_fillcolor; // 채우기
-	bool isFill;
-	bool isLine;
+	bool isFill;			  // 채우기 여부	
+	bool isLine;			  // 외곽선 여부
 };
 

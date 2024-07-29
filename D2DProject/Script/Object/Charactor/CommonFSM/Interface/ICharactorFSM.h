@@ -7,6 +7,9 @@ class ICharactorFSM
 	:public Template_FSMState<CharactorCore>
 {
 public:
+
+	std::vector<Resource::FMODSound*> voices;
+
 	virtual void Start();
 
 	bool ProcessQuickKey(bool _isAttack);

@@ -24,6 +24,11 @@ public:
         std::uniform_int_distribution<int> dist(_min, _max);
         return dist(engine);
     }
+    static int Range(int _min, size_t _max)
+    {
+        std::uniform_int_distribution<int> dist(_min, _max);
+        return dist(engine);
+    }
 
     // 정규 분포 난수 생성
     static float NormalDist(float _mean, float _stdDev)

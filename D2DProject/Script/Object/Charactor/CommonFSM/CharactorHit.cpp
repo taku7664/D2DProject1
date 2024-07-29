@@ -10,7 +10,13 @@ void FSM::CharactorHit::StateEnter()
 }
 
 void FSM::CharactorHit::StateUpdate()
-{
+{ 
+	if (owner->hp._cur <= 0.f)
+	{
+		owner->state = CharactorState::Die;
+		FSM->ChangeState("Die");
+		return;
+	}
 	//=================중력보정 연산=================
 	float hpPer = (float)(preHp - owner->hp._cur) / (float)owner->hp._max;
 	if (hpPer > 0.3f)
@@ -43,12 +49,6 @@ void FSM::CharactorHit::StateUpdate()
 					owner->gravity = 0.f;
 					owner->velocity = { 0.f, 0.f };
 					standTime += Time::deltaTime;
-					if (owner->hp._cur <= 0.f)
-					{
-						owner->state = CharactorState::Die;
-						FSM->ChangeState("Die");
-						return;
-					}
 					if (standTime >= 0.5f)
 					{
 						FSM->ChangeState("Idle");
@@ -86,4 +86,13 @@ void FSM::CharactorHit::StateExit()
 {
 	isAirbon = false;
 	owner->gravityScale = 1.f;
+}
+
+void FSM::CharactorHit::HitEnter()
+{
+	if (!owner->hitVoice.empty())
+	{
+		int hitvoice = Random::Range(0, (int)owner->hitVoice.size() - 1);
+		owner->soundPlayer->Play(owner->hitVoice[hitvoice]);
+	}
 }

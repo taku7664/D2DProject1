@@ -26,8 +26,6 @@ void Animator2D::Update()
 	{
 		if (!isStop)
 		{
-			frameCount += Time::deltaTime * countScale;
-
 			// duration보다 크면
 			if (frameCount > m_activeAnimation->GetFrameData()[currentFrame].duration)
 			{
@@ -51,11 +49,11 @@ void Animator2D::Update()
 						currentFrame++;
 						enterFrame = currentFrame;
 						FiniteStateMachine* fsm = gameObject->GetComponent<FiniteStateMachine>();
-						if (fsm)
-							fsm->GetCurrentState()->OnAnimationEnter(currentFrame);
+						if (fsm) fsm->GetCurrentState()->OnAnimationEnter(currentFrame);
 					}
 				}
 			}
+			frameCount += Time::deltaTime * countScale;
 		}
 	}
 }
