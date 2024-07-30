@@ -44,7 +44,7 @@ void FSM::CharactorHit::StateUpdate()
 					owner->gravity = 0.f;
 					owner->velocity = { 0.f, 0.f };
 					standTime += Time::deltaTime;
-					if (standTime >= 0.5f)
+					if (standTime >= 0.4f)
 					{
 						FSM->ChangeState("Idle");
 						owner->pvpInfo.tempCombo = 0;
@@ -82,13 +82,13 @@ void FSM::CharactorHit::StateUpdate()
 
 void FSM::CharactorHit::StateExit()
 {
+	if(isAirbon) owner->invCount = owner->invTime;
 	isAirbon = false;
 	owner->gravityScale = 1.f;
 	owner->isAirial = false;
 	owner->zPos = 0.f;
 	owner->gravity = 0.f;
 	standTime = 0.f;
-	owner->invCount = owner->invTime;
 }
 
 void FSM::CharactorHit::HitEnter()

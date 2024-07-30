@@ -20,6 +20,7 @@ public:
 		T* state = new T();
 		state->FSM = this;
  		state->Start();
+        state->SetName(_key);
 		if (m_stateMap.empty())
 			m_curState = m_preState = state;
 		m_stateMap.insert(std::make_pair(_key, state));

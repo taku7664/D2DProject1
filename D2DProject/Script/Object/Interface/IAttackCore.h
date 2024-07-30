@@ -2,7 +2,7 @@
 #include "DemoApp.h"
 #include "Data/Skill/SkillData.h"
 
-class IObjectCore;
+class CharactorCore;
 
 class IAttackCore
 	: public Script
@@ -12,16 +12,16 @@ private:
 	
 public:
 
-	IObjectCore*				owner;
+	CharactorCore*				owner;
 	Vector2						dirVector;
 	BoxCollider2D*				HitBox;
-	std::vector<IObjectCore*>	collisionArr;
+	std::vector<CharactorCore*>	collisionArr;
 
 	FMODPlayer*					soundPlayer;
 	std::vector<Resource::FMODSound*> effectSounds;
 	std::vector<Resource::FMODSound*> hitSounds;
 
-	virtual void Set(IObjectCore* _owner, AttackInfo& _info);
+	virtual void Set(CharactorCore* _owner, AttackInfo& _info);
 	void SetInfo(const AttackInfo& _info);
 
 	virtual void OnCollisionEnter(Actor* _collision);
@@ -30,9 +30,9 @@ public:
 	
 	bool IsHit() { return !collisionArr.empty(); }
 
-	float CalculateDamage(IObjectCore* _dest);
-	void CreateDamageEffect(IObjectCore* _dest, int _type, int _dmg);
-	void CalculateVelocity(IObjectCore* _dest);
+	float CalculateDamage(CharactorCore* _dest);
+	void CreateDamageEffect(CharactorCore* _dest, int _type, int _dmg);
+	void CalculateVelocity(CharactorCore* _dest);
 	void PlayHitSound();
 
 };

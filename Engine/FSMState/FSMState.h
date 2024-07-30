@@ -5,6 +5,9 @@ class FiniteStateMachine;
 class FSMState abstract
 {
 private:
+
+	std::string m_name;
+
 public:
 
 	FiniteStateMachine* FSM;
@@ -15,6 +18,9 @@ public:
 	virtual void StateExit() = 0;		// 상태를 벗어날 때 한번 호출되는 함수
 
 	virtual void OnAnimationEnter(int _index) {}
+
+	void SetName(const std::string& _name) { m_name = _name; }
+	std::string GetName() const { return m_name; }
 };
 
 // owner를 편하게 쓰기 위해서 사용하는 함수

@@ -97,6 +97,14 @@ LoadSound::Fight::Fight()
 	group = Voice;
 }
 
+LoadSound::Voice_SwordManGuard::Voice_SwordManGuard()
+{
+	_key = L"Voice_SwordManGuard";
+	_path = L"Sound/Voice/SwordMan/sm_guard.ogg";
+	isLoop = false;
+	group = Voice;
+}
+
 LoadSound::Voice_SwordManBassicAttack1::Voice_SwordManBassicAttack1()
 {
 	_key = L"Voice_SwordManBassicAttack1";
@@ -304,6 +312,14 @@ LoadSound::UpperSlash2::UpperSlash2()
 {
 	_key = L"UpperSlash2";
 	_path = L"Sound/Effect/Skill/SwordMan/upper_slash_02.ogg";
+	isLoop = false;
+	group = Effect;
+}
+
+LoadSound::GuardHit::GuardHit()
+{
+	_key = L"GuardHit";
+	_path = L"Sound/Effect/Skill/SwordMan/swd_eff_01.ogg";
 	isLoop = false;
 	group = Effect;
 }

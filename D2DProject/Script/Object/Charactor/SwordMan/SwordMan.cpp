@@ -2,12 +2,13 @@
 #include "Contents.h"
 #include "Data/Skill/LoadSwordManSkillData.h"
 #include "../CharactorCore.h"
-#include "../CommonFSM/CharactorIdle.h"
+#include "FSM/SwordManIdle.h"
 #include "../CommonFSM/CharactorWalk.h"
 #include "../CommonFSM/CharactorRun.h"
 #include "../CommonFSM/CharactorHit.h"
 #include "../CommonFSM/CharactorDie.h"
 #include "../CommonFSM/CharactorWin.h"
+#include "FSM/SwordManGuard.h"
 #include "FSM/SwordManJump.h"
 #include "FSM/SwordManBackStep.h"
 #include "FSM/SwordManBasicAttack1.h"
@@ -23,8 +24,8 @@ void SwordMan::Initialize()
 {
 	core->hp = { 20000, 20000 };
 	core->mp = { 500, 500 };
-	core->atk = 750.f; //250
-	core->attackSpd = 4.9f;
+	core->atk = 250.f; //250
+	core->attackSpd = 1.9f;
 	core->moveSpd = 150.f;
 	core->jumpPower = 500.0f;
 	core->weight = 1000.f;
@@ -35,37 +36,39 @@ void SwordMan::Initialize()
 	core->hitVoice.push_back(core->soundPlayer->AddAudio("Hit1", LoadSound::Voice_SwordManHit1().Load()));
 	core->hitVoice.push_back(core->soundPlayer->AddAudio("Hit2", LoadSound::Voice_SwordManHit2().Load()));
 	core->hitVoice.push_back(core->soundPlayer->AddAudio("Hit3", LoadSound::Voice_SwordManHit3().Load()));
-	core->soundPlayer->AddAudio("Jump",					LoadSound::Voice_SwordManJump().Load());
-	core->soundPlayer->AddAudio("BackStep",				LoadSound::Voice_SwordManBackStep().Load());
-	core->soundPlayer->AddAudio("JumpAttack1",			LoadSound::Voice_SwordManJumpAttack1().Load());
-	core->soundPlayer->AddAudio("JumpAttack2",			LoadSound::Voice_SwordManJumpAttack2().Load());
-	core->soundPlayer->AddAudio("Bassicattack1",		LoadSound::Voice_SwordManBassicAttack1().Load());
-	core->soundPlayer->AddAudio("Bassicattack2",		LoadSound::Voice_SwordManBassicAttack2().Load());
-	core->soundPlayer->AddAudio("Bassicattack3",		LoadSound::Voice_SwordManBassicAttack3().Load());
-	core->soundPlayer->AddAudio("DashAttack",			LoadSound::Voice_SwordManDashAttack().Load());
-	core->soundPlayer->AddAudio("Die",					LoadSound::Voice_SwordManDie().Load());
-	core->soundPlayer->AddAudio("Win",					LoadSound::Voice_HardAttackVoice1().Load());
-
-	core->animator->AddAnimation("Idle",			LoadAnimation::SwordManIdle().Load());
-	core->animator->AddAnimation("Walk",			LoadAnimation::SwordManWalk().Load());
-	core->animator->AddAnimation("Run",			    LoadAnimation::SwordManRun().Load());
-	core->animator->AddAnimation("Jump",			LoadAnimation::SwordManJump().Load());
-	core->animator->AddAnimation("Hit",				LoadAnimation::SwordManHit().Load());
-	core->animator->AddAnimation("Win",				LoadAnimation::SwordManWin().Load());
-	core->animator->AddAnimation("BasicAttack1",    LoadAnimation::SwordManBasicAttack1().Load());
-	core->animator->AddAnimation("BasicAttack2",    LoadAnimation::SwordManBasicAttack2().Load());
-	core->animator->AddAnimation("BasicAttack3",    LoadAnimation::SwordManBasicAttack3().Load());
-	core->animator->AddAnimation("DashAttack",      LoadAnimation::SwordManDashAttack().Load());
-	core->animator->AddAnimation("JumpAttack",      LoadAnimation::SwordManJumpAttack().Load());
-	core->animator->AddAnimation("Attack1",		    LoadAnimation::SwordManAttack1().Load());
-	core->animator->AddAnimation("Attack2",		    LoadAnimation::SwordManAttack2().Load());
-	core->animator->AddAnimation("Attack3",		    LoadAnimation::SwordManAttack3().Load());
+	core->soundPlayer->AddAudio("Jump",							 LoadSound::Voice_SwordManJump().Load());
+	core->soundPlayer->AddAudio("BackStep",						 LoadSound::Voice_SwordManBackStep().Load());
+	core->soundPlayer->AddAudio("JumpAttack1",					 LoadSound::Voice_SwordManJumpAttack1().Load());
+	core->soundPlayer->AddAudio("JumpAttack2",					 LoadSound::Voice_SwordManJumpAttack2().Load());
+	core->soundPlayer->AddAudio("Bassicattack1",				 LoadSound::Voice_SwordManBassicAttack1().Load());
+	core->soundPlayer->AddAudio("Bassicattack2",				 LoadSound::Voice_SwordManBassicAttack2().Load());
+	core->soundPlayer->AddAudio("Bassicattack3",				 LoadSound::Voice_SwordManBassicAttack3().Load());
+	core->soundPlayer->AddAudio("DashAttack",					 LoadSound::Voice_SwordManDashAttack().Load());
+	core->soundPlayer->AddAudio("Die",							 LoadSound::Voice_SwordManDie().Load());
+	core->soundPlayer->AddAudio("Win",							 LoadSound::Voice_HardAttackVoice1().Load());
+	core->soundPlayer->AddAudio("Guard",						 LoadSound::Voice_SwordManGuard().Load());
+																 
+	core->animator->AddAnimation("Idle",						 LoadAnimation::SwordManIdle().Load());
+	core->animator->AddAnimation("Walk",						 LoadAnimation::SwordManWalk().Load());
+	core->animator->AddAnimation("Run",							 LoadAnimation::SwordManRun().Load());
+	core->animator->AddAnimation("Jump",						 LoadAnimation::SwordManJump().Load());
+	core->animator->AddAnimation("Hit",							 LoadAnimation::SwordManHit().Load());
+	core->animator->AddAnimation("Win",							 LoadAnimation::SwordManWin().Load());
+	core->animator->AddAnimation("Guard",						 LoadAnimation::SwordManGuard().Load());
+	core->animator->AddAnimation("BasicAttack1",				 LoadAnimation::SwordManBasicAttack1().Load());
+	core->animator->AddAnimation("BasicAttack2",				 LoadAnimation::SwordManBasicAttack2().Load());
+	core->animator->AddAnimation("BasicAttack3",				 LoadAnimation::SwordManBasicAttack3().Load());
+	core->animator->AddAnimation("DashAttack",					 LoadAnimation::SwordManDashAttack().Load());
+	core->animator->AddAnimation("JumpAttack",					 LoadAnimation::SwordManJumpAttack().Load());
+	core->animator->AddAnimation("Attack1",						 LoadAnimation::SwordManAttack1().Load());
+	core->animator->AddAnimation("Attack2",						 LoadAnimation::SwordManAttack2().Load());
+	core->animator->AddAnimation("Attack3",						 LoadAnimation::SwordManAttack3().Load());
 	core->animator->ChangeAnimation("Idle");
 	core->aniOffset = { 40.f, -90.f };
 	core->animator->renderOffset = { 40.f, -80.f };
 	core->animator->centerOffset = { 20.f, 0.f };
 
-	core->fsm->AddState<FSM::CharactorIdle>("Idle");
+	core->fsm->AddState<FSM::SwordManIdle>("Idle");
 	core->fsm->AddState<FSM::CharactorWalk>("Walk");
 	core->fsm->AddState<FSM::CharactorRun>("Run");
 	core->fsm->AddState<FSM::CharactorHit>("Hit");
@@ -73,6 +76,7 @@ void SwordMan::Initialize()
 	core->fsm->AddState<FSM::SwordManBackStep>("BackStep");
 	core->fsm->AddState<FSM::CharactorDie>("Die");
 	core->fsm->AddState<FSM::CharactorWin>("Win");
+	core->fsm->AddState<FSM::SwordManGuard>("Guard");
 	core->fsm->AddState<FSM::SwordManBasicAttack1>("BasicAttack1");
 	core->fsm->AddState<FSM::SwordManBasicAttack2>("BasicAttack2");
 	core->fsm->AddState<FSM::SwordManBasicAttack3>("BasicAttack3");

@@ -7,6 +7,6 @@ class ISkillCore
 public:
 	Animator2D* animator;
 
-	virtual void Set(IObjectCore* _owner, AttackInfo& _info);
+	virtual void Set(CharactorCore* _owner, AttackInfo& _info);
 };
 

@@ -23,7 +23,7 @@ void CharactorCore::Start()
 	body->size = { 65.f, 100.f };
 	body->offset = { 0.f, 60.f };
 	
-	invTime = 0.5f;
+	invTime = 1.0f;
 }
 
 // 주요 업데이트는 FSM을 통해 업데이트 된다.
@@ -65,6 +65,16 @@ void CharactorCore::LateUpdate()
 	{
 		hp._cur = hp._max;
 		mp._cur = mp._max;
+	}
+	if(state != CharactorState::Die)
+		invCount -= Time::deltaTime;
+	if (invCount <= 0.f)
+	{
+		body->SetState(GameState::Active);
+	}
+	else
+	{
+		body->SetState(GameState::Passive);
 	}
 }
 
@@ -172,8 +182,6 @@ void CharactorCore::CalculateCoolTime()
 void CharactorCore::OnCollisionEnter(Actor* _collision)
 {
 }
-
-
 
 void CharactorCore::LoadResource()
 {

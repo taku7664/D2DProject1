@@ -212,6 +212,8 @@
     <ClCompile Include="Script\Object\Wall.cpp" />
     <ClCompile Include="Script\PlayerZoomer.cpp" />
     <ClCompile Include="Script\Player\Player.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManGuard.cpp" />
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManIdle.cpp" />
     <ClCompile Include="System\GameManager.cpp" />
     <ClCompile Include="System\GameMode.cpp" />
     <ClCompile Include="Script\Object\Effect\Skill\VaneSlashWave.cpp" />
@@ -291,6 +293,8 @@
     <ClInclude Include="Script\Object\Wall.h" />
     <ClInclude Include="Script\PlayerZoomer.h" />
     <ClInclude Include="Script\Player\Player.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManGuard.h" />
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManIdle.h" />
     <ClInclude Include="System\GameManager.h" />
     <ClInclude Include="System\GameMode.h" />
     <ClInclude Include="Script\Object\Effect\Skill\VaneSlashWave.h" />

@@ -27,7 +27,7 @@ namespace LoadSkill
 			{
 				{1}, // 레벨
 				{true}, // 평타 캔슬 가능 여부
-				{2}  // 쿨타임
+				{2.0f}  // 쿨타임
 			};
 			info.insert(std::make_pair("Slash", AttackInfo() = {
 				1.0f,
@@ -73,7 +73,7 @@ namespace LoadSkill
 			{
 				{1}, // 레벨
 				{true}, // 평타 캔슬 가능 여부
-				{1}  // 쿨타임
+				{6}  // 쿨타임
 			};
 			info.insert(std::make_pair("Up_Down", AttackInfo() = {
 				0.2f,

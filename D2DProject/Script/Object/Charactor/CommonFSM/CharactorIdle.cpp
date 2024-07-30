@@ -25,7 +25,7 @@ namespace FSM
 			else if (owner->TriggerKeyHold(owner->input.left))
 				owner->bodyActor->transform->scale.x = -1.f;
 
-			if (ProcessQuickKey(false)) // Äü½½·Ô Ã³¸®
+			if (CheckQuickKey(false)) // Äü½½·Ô Ã³¸®
 				return;
 
 			if (owner->TriggerKeyHold(owner->input.x))

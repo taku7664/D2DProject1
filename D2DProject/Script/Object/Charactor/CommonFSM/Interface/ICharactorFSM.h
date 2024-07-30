@@ -12,7 +12,7 @@ public:
 
 	virtual void Start();
 
-	bool ProcessQuickKey(bool _isAttack);
+	bool CheckQuickKey(bool _isAttack);
 	bool ChangeState_To_AniEnd(const std::string& _fsmName);
 
 

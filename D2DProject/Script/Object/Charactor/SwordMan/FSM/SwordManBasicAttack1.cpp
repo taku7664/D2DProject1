@@ -33,7 +33,7 @@ namespace FSM
 	void FSM::SwordManBasicAttack1::StateUpdate()
 	{
 		// =================플레이어 키 입력 및 애니메이션=================
-		if (ProcessQuickKey(true)) 
+		if (CheckQuickKey(true)) 
 			return;
 		if (owner->TriggerKeyDown(owner->input.c) && owner->commandQueue[1] == owner->input.down)
 		{

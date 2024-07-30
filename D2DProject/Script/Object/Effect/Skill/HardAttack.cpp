@@ -1,7 +1,7 @@
 #include "HardAttack.h"
 #include "Contents.h"
 
-void HardAttack::Set(IObjectCore* _owner, AttackInfo& _info)
+void HardAttack::Set(CharactorCore* _owner, AttackInfo& _info)
 {
 	__super::Set(_owner, _info);
 	animator->AddAnimation("HardAttack", LoadAnimation::HardAttack().Load());

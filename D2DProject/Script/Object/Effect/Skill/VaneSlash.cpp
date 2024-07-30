@@ -2,7 +2,7 @@
 #include "Contents.h"
 #include "VaneSlashWave.h"
 
-void VaneSlash::Set(IObjectCore* _owner, AttackInfo& _info)
+void VaneSlash::Set(CharactorCore * _owner, AttackInfo& _info)
 {
 	__super::Set(_owner, _info);
 

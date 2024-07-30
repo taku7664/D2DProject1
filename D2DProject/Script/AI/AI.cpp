@@ -7,7 +7,6 @@ void AI::Start()
 	controller = gameObject->AddComponent<AI_SwordManController>();
 
 	targetRay = gameObject->AddComponent<LineRenderer>();
-	target = FindObject<Actor>("Player0")->GetComponent<IObjectCore>();
 }
 
 void AI::Update()
@@ -23,7 +22,6 @@ void AI::LateUpdate()
 
 void AI::GetKey(int _key, bool _down)
 {
-	// 딜레이 없게 하려고 
 	aiKeys[_key].IsDown = false;
 	if (_down == true) {
 		if (aiKeys[_key].IsHold == false) {

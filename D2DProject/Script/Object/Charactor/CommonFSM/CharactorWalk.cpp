@@ -22,7 +22,7 @@ void FSM::CharactorWalk::StateUpdate()
 		owner->soundPlayer->SetVolume(1.5f);
 	}
 
-	if (ProcessQuickKey(false)) // Äü½½·Ô Ã³¸®
+	if (CheckQuickKey(false)) // Äü½½·Ô Ã³¸®
 		return;
 
 	if (owner->TriggerKeyHold(owner->input.x))

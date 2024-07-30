@@ -16,6 +16,7 @@ enum class CharactorState
 	Die,
 	Attack,
 	Skill,
+	Guard,
 	Win,
 	SIZE
 };

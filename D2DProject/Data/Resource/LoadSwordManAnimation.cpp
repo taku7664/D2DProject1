@@ -83,15 +83,25 @@ namespace LoadAnimation
         _key = L"A_SwordManWin";
         _spriteKey = L"S_SwordManSheet2";
         _data = {
-            {88, 0.5f, Vector2(17,0)},
-            {87, 0.5f, Vector2(17,0)},
-            {89, 0.5f, Vector2(17,0)},
-            {90, 0.5f, Vector2(17,0)},
-            {91, 0.5f, Vector2(17,0)},
-            {92, 0.5f, Vector2(17,0)},
-            {93, 0.5f, Vector2(17,0)},
-            {94, 0.5f, Vector2(17,0)},
-            {95, 4.0f, Vector2(17,0)}
+            {88, 0.3f, Vector2(17,0)},
+            {87, 0.3f, Vector2(17,0)},
+            {89, 0.3f, Vector2(17,0)},
+            {90, 0.3f, Vector2(17,0)},
+            {91, 0.3f, Vector2(17,0)},
+            {92, 0.3f, Vector2(17,0)},
+            {93, 0.3f, Vector2(17,0)},
+            {94, 0.3f, Vector2(17,0)},
+            {95, 2.0f, Vector2(17,0)}
+        };
+    }
+
+    SwordManGuard::SwordManGuard()
+    {
+        _key = L"A_SwordManGuard";
+        _spriteKey = L"S_SwordManSheet2";
+        _data = {
+            {0, 0.2f},
+            {1, 0.2f}
         };
     }
 
@@ -106,7 +116,7 @@ namespace LoadAnimation
             {5, 0.1f},
             {6, 0.1f},
             {7, 0.1f},
-            {8, 0.3f}
+            {8, 0.4f}
         };
     }
 
@@ -121,7 +131,7 @@ namespace LoadAnimation
             {12, 0.1f},
             {13, 0.05f},
             {14, 0.05f},
-            {15, 0.3f}
+            {15, 0.4f}
         };
     }
 
@@ -135,7 +145,7 @@ namespace LoadAnimation
             {18, 0.1f},
             {20, 0.1f},
             {21, 0.1f},
-            {22, 0.2f}
+            {22, 0.3f}
         };
     }
 

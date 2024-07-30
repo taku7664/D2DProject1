@@ -53,7 +53,7 @@ void FSM::SwordManVaneSlash::StateUpdate()
 		if (owner->animator->End())
 		{
 			count += Time::deltaTime * owner->attackSpd;
-			if (count >= 1.5)
+			if (count >= 2)
 			{
 				FSM->ChangeState("Idle");
 			}

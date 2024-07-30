@@ -48,6 +48,7 @@ namespace LoadSound
 	struct Voice_SwordManBackStep : public LoadSoundData { Voice_SwordManBackStep(); };
 	struct Voice_SwordManDie : public LoadSoundData { Voice_SwordManDie(); };
 
+	struct Voice_SwordManGuard : public LoadSoundData { Voice_SwordManGuard(); };
 	struct Voice_SwordManJumpAttack1 : public LoadSoundData { Voice_SwordManJumpAttack1(); };
 	struct Voice_SwordManJumpAttack2 : public LoadSoundData { Voice_SwordManJumpAttack2(); };
 	struct Voice_SwordManBassicAttack1 : public LoadSoundData { Voice_SwordManBassicAttack1(); };
@@ -64,6 +65,8 @@ namespace LoadSound
 	struct Voice_SwordManvaneSlashDown : public LoadSoundData { Voice_SwordManvaneSlashDown(); };
 
 	//Effect
+	struct GuardHit : public LoadSoundData				 { GuardHit(); };
+
 	struct UpperSlash1 : public LoadSoundData			 { UpperSlash1(); };
 	struct UpperSlash2 : public LoadSoundData			 { UpperSlash2(); };
 

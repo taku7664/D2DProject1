@@ -1,10 +1,10 @@
 #include "IAttackCore.h"
 #include "Contents.h"
-#include "IObjectCore.h"
+#include "../Charactor/CharactorCore.h"
 #include "../Charactor/CommonFSM/CharactorHit.h"
 #include "../../Effect/NumberFontSprite.h"
 
-void IAttackCore::Set(IObjectCore* _owner, AttackInfo& _info)
+void IAttackCore::Set(CharactorCore* _owner, AttackInfo& _info)
 {
 	collisionArr.clear();
 	owner = _owner;
@@ -30,7 +30,7 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 {
 	if (!singleTarget || (singleTarget && collisionArr.empty()))
 	{
-		IObjectCore* destCore = nullptr;
+		CharactorCore* destCore = nullptr;
 		Object* destobj = nullptr;
 		Actor* destAct = nullptr;
 		// =================충돌 대상 조건 확인=================
@@ -43,7 +43,7 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 			if (destAct == owner->gameObject) return; // 자기 자신은 제외
 
 			// Core로 변경
-			destCore = destAct->GetComponent<IObjectCore>();
+			destCore = destAct->GetComponent<CharactorCore>();
 			if (owner->gameObject->transform->position.y > destCore->gameObject->transform->position.y + yHitRange * 0.5f ||
 				owner->gameObject->transform->position.y < destCore->gameObject->transform->position.y - yHitRange * 0.5f)
 				return;
@@ -52,15 +52,29 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 			if (it != collisionArr.end()) return;
 			// =================상태 변경 및 조건 검사=================
 			if (!destCore) return;
-			FSM::CharactorHit* fsm = destCore->fsm->ChangeStateAndReturn<FSM::CharactorHit>("Hit");
-			if (fsm->owner->state == CharactorState::Die) return;
-			if (fsm->isAirbon == true && destCore->zPos >= -10.f && !isLow) return;
+			if (destCore->hp._cur <= 0.f) return;
+			FSM::CharactorHit* fsm;
+			bool isGuard = true;
+			if (destCore->state != CharactorState::Guard ||
+				(destCore->state == CharactorState::Guard &&
+					destCore->bodyActor->transform->scale.x == owner->bodyActor->transform->scale.x))
+			{
+				fsm = destCore->fsm->ChangeStateAndReturn<FSM::CharactorHit>("Hit");
+				isGuard = false;
+				if (fsm->isAirbon == true && destCore->zPos >= -10.f && !isLow) return;
+			}
 			// =================데미지 연산 과정=================
 			float resDamage = CalculateDamage(destCore);
 			// =================데미지 이펙트 출력=================
 			CreateDamageEffect(destCore, 1, resDamage);
 			// =================물리 처리 과정=================
-			CalculateVelocity(destCore);
+			if(!isGuard)
+				CalculateVelocity(destCore);
+			else
+			{
+				destCore->velocity = { vPower.x / 2, vPower.y };
+				destCore->dirVector.x = gameObject->transform->scale.x;
+			}
 			// =================피격 사운드 출력=================
 			PlayHitSound();
 
@@ -69,7 +83,7 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 	}
 }
 
-float IAttackCore::CalculateDamage(IObjectCore* _dest)
+float IAttackCore::CalculateDamage(CharactorCore* _dest)
 {
 	float resDamage = (owner->atk * damagePer);
 	resDamage *= Random::Range(80.0f, 100.0f) * 0.01f;
@@ -81,16 +95,16 @@ float IAttackCore::CalculateDamage(IObjectCore* _dest)
 	return resDamage;
 }
 
-void IAttackCore::CreateDamageEffect(IObjectCore* _dest, int _type, int _dmg)
+void IAttackCore::CreateDamageEffect(CharactorCore* _dest, int _type, int _dmg)
 {
 	Actor* font = CreateObject<Actor>("DamageFontEffect", LayerTag::Particle, ObjectTag::Particle);
 	font->AddComponent<NumberFontSprite>()->Set(_type, _dmg);
 	font->transform->position = _dest->bodyActor->transform->WorldPosition() + Vector2(0, -80);
 }
 
-void IAttackCore::CalculateVelocity(IObjectCore* _dest)
+void IAttackCore::CalculateVelocity(CharactorCore* _dest)
 {
-	FSM::CharactorHit* fsm = _dest->fsm->ChangeStateAndReturn<FSM::CharactorHit>("Hit");
+	FSM::CharactorHit* fsm = _dest->fsm->GetState<FSM::CharactorHit>("Hit");
 	fsm->HitEnter();
 
 	_dest->dirVector = Vector2(0, 0);
@@ -120,7 +134,7 @@ void IAttackCore::CalculateVelocity(IObjectCore* _dest)
 	else if (airPower == 0.f)
 	{
 		// 공중에 뜬 상태
-		if (fsm->isAirbon == true)
+		if (_dest->gravity != 0.f)
 		{
 			_dest->gravity = (_dest->zPos * 1.4f);
 			_dest->velocity *= 0.5;

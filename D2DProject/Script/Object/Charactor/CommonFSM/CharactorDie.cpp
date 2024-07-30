@@ -14,6 +14,7 @@ void FSM::CharactorDie::StateEnter()
 	owner->gravity = -300;
 	owner->velocity.x = 200;
 	owner->isAirial = true;
+	owner->state = CharactorState::Die;
 	if (GameMode::CheckWinner())
 	{
 		Time::timeScale = 0.2f;
@@ -26,6 +27,7 @@ void FSM::CharactorDie::StateUpdate()
 	{
 		owner->zPos += owner->gravity * Time::deltaTime;
 		owner->gravity += owner->weight * owner->gravityScale * Time::deltaTime;
+		owner->invCount = 0.f;
 		if (owner->gravity > 0)
 		{
 			if (owner->foot->CheckInteract(owner->body))
@@ -46,14 +48,13 @@ void FSM::CharactorDie::StateUpdate()
 					owner->velocity = { 0.f, 0.f };
 					standTime += Time::deltaTime;
 					owner->soundPlayer->Play("Die");
-					owner->state = CharactorState::Die;
 					GameMode::deadList.push_back(owner);
 					CharactorCore* temp = GameMode::CheckWinner();
 					if (temp)
 					{
 						Time::timeScale = 1.f;
 						GameMode::curState = GameProcess::End;
-						owner->body->SetState(GameState::Passive);
+						//owner->body->SetState(GameState::Passive);
 					}
 				}
 			}

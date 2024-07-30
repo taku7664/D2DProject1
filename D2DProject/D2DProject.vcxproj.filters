@@ -246,6 +246,12 @@
     <ClCompile Include="Script\AI\AI_SwordManController.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManGuard.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Object\Charactor\SwordMan\FSM\SwordManIdle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\Object\ObjectData.h">
@@ -477,6 +483,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Script\AI\AI_SwordManController.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManGuard.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\Charactor\SwordMan\FSM\SwordManIdle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
