@@ -21,7 +21,8 @@ void HUD::HUDOwner::Update()
 		if (GameMode::playerList.size() > i)
 		{
 			upperHUDs[i]->targetObject =
-				GameMode::playerList[i]->GetComponent<CharactorCore>(ComponentType::Script);
+				GameMode::playerList[i]->gameObject->
+				GetComponent<CharactorCore>(ComponentType::Script);
 			upperHUDs[i]->gameObject->SetActive(true);
 		}
 		else

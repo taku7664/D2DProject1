@@ -21,22 +21,35 @@ namespace PVPUI
 	}
 	void List::Update()
 	{
-		if (bt->button->OnPress())
+		if (bt->button->OnPress() && bt->GetState() == GameState::Active)
 		{
 			if (bt->uiSprite->index == 0)
 			{
-				Actor* player;
-				if(GameMode::playerCount % 2 == 0)
-					player = GameMode::AddPlayer<Player, SwordMan>(WorldManager::GetActiveWorld());
-				else player = GameMode::AddPlayer<AI, SwordMan>(WorldManager::GetActiveWorld());
+				CharactorCore* core;
+				core = GameMode::AddPlayer<Player, SwordMan>(WorldManager::GetActiveWorld());
 				IMap* map = FindObject<Actor>("Map", LayerTag::Map)->GetComponent<IMap>();
-				Vector2 spawnPos = map->spawnPoint[rand() % map->spawnPoint.size()];
-				player->transform->position = spawnPos;
+				Vector2 spawnPos = map->spawnPoint[Random::Range(0, map->spawnPoint.size() - 1)];
+				core->gameObject->transform->position = spawnPos;
 			}
 			else
 			{
 				GameMode::RemovePlayer(id);
 			}
+		}
+		if (pt->button->OnPress() && pt->GetState() == GameState::Active)
+		{
+			CharactorCore* core;
+			if (bt->uiSprite->index == 1)
+			{
+				core = GameMode::RemoveAndAdd<AI, SwordMan>(id, WorldManager::GetActiveWorld());
+			}
+			else
+			{
+				core = GameMode::RemoveAndAdd<Player, SwordMan>(id, WorldManager::GetActiveWorld());
+			}
+			IMap* map = FindObject<Actor>("Map", LayerTag::Map)->GetComponent<IMap>();
+			Vector2 spawnPos = map->spawnPoint[Random::Range(0, map->spawnPoint.size() - 1)];
+			core->gameObject->transform->position = spawnPos;
 		}
 	}
 };

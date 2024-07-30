@@ -65,6 +65,7 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 			}
 			// =================데미지 연산 과정=================
 			float resDamage = CalculateDamage(destCore);
+			resDamage *= 1 - (float)isGuard * 0.5f;
 			// =================데미지 이펙트 출력=================
 			CreateDamageEffect(destCore, 1, resDamage);
 			// =================물리 처리 과정=================
@@ -72,8 +73,9 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 				CalculateVelocity(destCore);
 			else
 			{
-				destCore->velocity = { vPower.x / 2, vPower.y };
+				destCore->velocity = { vPower.x * 2, vPower.y };
 				destCore->dirVector.x = gameObject->transform->scale.x;
+				soundPlayer->Play(LoadSound::GuardHit().Load());
 			}
 			// =================피격 사운드 출력=================
 			PlayHitSound();

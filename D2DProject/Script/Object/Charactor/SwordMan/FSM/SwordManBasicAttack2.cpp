@@ -39,11 +39,20 @@ namespace FSM
 			FSM->ChangeState("BackStep");
 			return;
 		}
+		if (owner->TriggerKeyHold(owner->input.z))
+		{
+			if (owner->skillList[LoadSkill::UpperSlash().id]->CanUse())
+			{
+				FSM->ChangeState("Upper");
+				owner->skillList[LoadSkill::UpperSlash().id]->coolCount = 0;
+				return;
+			}
+		}
 		// 마지막 프레임이 되었을 때,
 		if (owner->animator->currentFrame == owner->animator->FrameSize() - 1)
 		{
 			if (ChangeState_To_AniEnd("Idle")) return;
-			else if (owner->animator->frameCount > owner->animator->GetAnimationData().duration * 0.5)
+			else if (owner->animator->frameCount > owner->animator->GetAnimationData().duration * 0.4)
 			{
 				if (owner->TriggerKeyHold(owner->input.x))
 				{

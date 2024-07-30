@@ -40,6 +40,15 @@ namespace FSM
 			FSM->ChangeState("BackStep");
 			return;
 		}
+		if (owner->TriggerKeyHold(owner->input.z))
+		{
+			if (owner->skillList[LoadSkill::UpperSlash().id]->CanUse())
+			{
+				FSM->ChangeState("Upper");
+				owner->skillList[LoadSkill::UpperSlash().id]->coolCount = 0;
+				return;
+			}
+		}
 		if (ChangeState_To_AniEnd("Idle")) return;
 		// =================플레이어 돌진거리 연산=================
 		owner->SetVelocityDirect();

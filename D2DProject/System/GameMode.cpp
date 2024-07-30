@@ -2,7 +2,7 @@
 #include "../Script/Object/Charactor/CharactorCore.h"
 
 GameProcess                 GameMode::curState = GameProcess::Ready;
-std::vector<Actor*>         GameMode::playerList{};
+std::vector<CharactorCore*>         GameMode::playerList{};
 std::vector<CharactorCore*> GameMode::deadList{};
 int                         GameMode::playerCount = 0;
 
@@ -15,9 +15,8 @@ CharactorCore* GameMode::CheckWinner()
 {
     int count = 0;
     CharactorCore* temp = nullptr;
-    for (Actor* p : playerList)
+    for (CharactorCore* core : playerList)
     {
-        CharactorCore* core = p->GetComponent<CharactorCore>();
         if (core->hp._cur > 0.f)
         {
             ++count;

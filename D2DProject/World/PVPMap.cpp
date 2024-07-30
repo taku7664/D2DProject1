@@ -22,14 +22,13 @@ void PVPMap::WorldEnter()
 		actor = CreateObject<Actor>("CountDowner", LayerTag::Defalut, ObjectTag::Defalut);
 		actor->AddComponent<PlayerZoomer>();
 	}
-	for (Actor*& player : GameMode::playerList)
+	for (IObjectCore* core : GameMode::playerList)
 	{
-		IObjectCore* core = player->GetComponent<IObjectCore>();
 		core->hp._cur = core->hp._max;
 		core->mp._cur = core->mp._max;
-		player->transform->position = mapCore->spawnPoint[Random::Range(0,mapCore->spawnPoint.size() - 1)];
+		core->gameObject->transform->position = mapCore->spawnPoint[Random::Range(0,mapCore->spawnPoint.size() - 1)];
 		core->fsm->ChangeState("Idle");
-		if (player->transform->position.x >= 0)
+		if (core->gameObject->transform->position.x >= 0)
 		{
 			core->bodyActor->transform->scale.x = -1.f;
 		}

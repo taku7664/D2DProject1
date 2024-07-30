@@ -28,7 +28,7 @@ void FSM::CharactorHit::StateUpdate()
 		{
 			if (owner->foot->CheckInteract(owner->body))
 			{
-				if (startJump < -1.5f)
+				if (startJump < -2.0f)
 				{
 					startJump *= 0.4f;
 					owner->gravity = startJump;
@@ -44,7 +44,7 @@ void FSM::CharactorHit::StateUpdate()
 					owner->gravity = 0.f;
 					owner->velocity = { 0.f, 0.f };
 					standTime += Time::deltaTime;
-					if (standTime >= 0.4f)
+					if (standTime >= 0.4 - (hpPer * 0.2))
 					{
 						FSM->ChangeState("Idle");
 						owner->pvpInfo.tempCombo = 0;

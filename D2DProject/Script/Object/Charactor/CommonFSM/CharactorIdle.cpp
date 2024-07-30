@@ -28,6 +28,16 @@ namespace FSM
 			if (CheckQuickKey(false)) // Äü½½·Ô Ã³¸®
 				return;
 
+			if (owner->TriggerKeyHold(owner->input.z))
+			{
+				if (owner->skillList[LoadSkill::UpperSlash().id]->CanUse())
+				{
+					FSM->ChangeState("Upper");
+					owner->skillList[LoadSkill::UpperSlash().id]->coolCount = 0;
+					return;
+				}
+			}
+
 			if (owner->TriggerKeyHold(owner->input.x))
 			{
 				FSM->ChangeState("BasicAttack1");

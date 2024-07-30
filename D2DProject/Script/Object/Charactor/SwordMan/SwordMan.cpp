@@ -24,8 +24,8 @@ void SwordMan::Initialize()
 {
 	core->hp = { 20000, 20000 };
 	core->mp = { 500, 500 };
-	core->atk = 250.f; //250
-	core->attackSpd = 1.9f;
+	core->atk = 350.f;
+	core->attackSpd = 2.0f;
 	core->moveSpd = 150.f;
 	core->jumpPower = 500.0f;
 	core->weight = 1000.f;
@@ -88,12 +88,13 @@ void SwordMan::Initialize()
 
 	core->skillList.resize(LoadSprite::SwordManSkillIcon()._data.cut_by_grid.x);
 
+	AddSkill(LoadSkill::Guard().Load());
 	AddSkill(LoadSkill::BackStepCutter().Load());
 	AddSkill(LoadSkill::UpperSlash().Load());
 	AddSkill(LoadSkill::HardAttack().Load());
 	AddSkill(LoadSkill::VaneSlash().Load());
 
-	core->skillSlot[0] = core->skillList[LoadSkill::UpperSlash().id];
+	core->skillSlot[0] = core->skillList[LoadSkill::Guard().id];
 	core->skillSlot[1] = core->skillList[LoadSkill::HardAttack().id];
 	core->skillSlot[2] = core->skillList[LoadSkill::VaneSlash().id];
 

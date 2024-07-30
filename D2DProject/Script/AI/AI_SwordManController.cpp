@@ -6,6 +6,7 @@ void AI_SwordManController::Start()
 {
 	owner = gameObject->GetComponent<AI>();
 	if (!owner) assert(false);
+	TargettingLogic();
 }
 
 void AI_SwordManController::Update()
@@ -15,35 +16,31 @@ void AI_SwordManController::Update()
 	moveTimer += Time::deltaTime;
 	seedTimer += Time::deltaTime;
 	// Å¸°ÙÆÃ
-	TargettingLogic();
-	if (owner->target)
+	if (GameMode::curState == GameProcess::Start)
 	{
-		Debug::Log(std::to_string(owner->target->zPos));
-
-		Vector2 myPos = owner->targetRay->startPos = gameObject->transform->WorldPosition();
-		Vector2 targetPos = owner->targetRay->endPos = owner->target->gameObject->transform->WorldPosition();
-		targetDistance.x = abs(owner->targetRay->startPos.x - owner->targetRay->endPos.x);
-		targetDistance.y = abs(owner->targetRay->startPos.y - owner->targetRay->endPos.y);
-
-		if (!MoveLogic(myPos, targetPos))
+		TargettingLogic();
+		if (owner->target)
 		{
-			std::string state = owner->fsm->GetCurrentState()->GetName();
-			int seed = Random::Range(0, 100);
+			Debug::Log(std::to_string(owner->target->zPos));
 
-			if (state == "Jump") State_Jump(seed);
-			else if (state == "BasicAttack1") State_BassicAttack1(seed);
-			else if (state == "BasicAttack2") State_BassicAttack2(seed);
-			else if (state == "BasicAttack3") State_BassicAttack3(seed);
-			else if (state == "Upper") State_UpperSlash(seed);
-			else if (state == "HardAttack") State_HardAttack(seed);
-			else if (state == "VaneSlash") State_VaneSlash(seed);
+			Vector2 myPos = owner->targetRay->startPos = gameObject->transform->WorldPosition();
+			Vector2 targetPos = owner->targetRay->endPos = owner->target->gameObject->transform->WorldPosition();
+			targetDistance.x = abs(owner->targetRay->startPos.x - owner->targetRay->endPos.x);
+			targetDistance.y = abs(owner->targetRay->startPos.y - owner->targetRay->endPos.y);
+
+			if (!MoveLogic(myPos, targetPos))
+			{
+				std::string state = owner->fsm->GetCurrentState()->GetName();
+				if (state == "Jump")			  State_Jump(seed);
+				else if (state == "BasicAttack1") State_BassicAttack1(seed);
+				else if (state == "BasicAttack2") State_BassicAttack2(seed);
+				else if (state == "BasicAttack3") State_BassicAttack3(seed);
+				else if (state == "Upper")		  State_UpperSlash(seed);
+				else if (state == "HardAttack")   State_HardAttack(seed);
+				else if (state == "VaneSlash")    State_VaneSlash(seed);
+			}
 		}
 	}
-}
-
-void AI_SwordManController::FixedUpdate()
-{
-	
 }
 
 void AI_SwordManController::Cmd_Dash(KeyType _key)
@@ -54,7 +51,7 @@ void AI_SwordManController::Cmd_Dash(KeyType _key)
 
 bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 {
-	if (targetDistance.x > 100 || targetDistance.y > 35)
+	if (targetDistance.x > 80 + (seed % 40) || targetDistance.y > 20 + (seed % 25))
 	{
 		if (moveTimer > 1.f)
 		{
@@ -102,7 +99,7 @@ bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 				owner->GetKey(KeyType::RIGHT, false);
 			}
 			owner->GetKey(owner->input.x, false);
-			owner->GetKey(owner->input.QuickKey[0], false);
+			owner->GetKey(owner->input.z, false);
 			owner->GetKey(owner->input.QuickKey[1], false);
 
 			if (Random::Range(0, 5) == 0)
@@ -135,7 +132,7 @@ bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 		}
 		else if (seed < 10)
 		{
-			owner->GetKey(owner->input.QuickKey[0]);
+			owner->GetKey(owner->input.z);
 		}
 	}
 	return false;
@@ -143,15 +140,16 @@ bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 
 void AI_SwordManController::TargettingLogic()
 {
-	if (targetTimer <= 0.f)
+	if (targetTimer <= 0.f && GameMode::playerList.size() >= 2)
 	{
 		while (true)
 		{
-			Actor* temp = GameMode::playerList[Random::Range(0, GameMode::playerList.size() - 1)];
-			if (temp != gameObject)
+			IObjectCore* temp = GameMode::playerList[Random::Range(0, GameMode::playerList.size() - 1)];
+			if (temp->gameObject != gameObject)
 			{
-				owner->target = temp->GetComponent<IObjectCore>();
+				owner->target = temp;
 				targetTimer = Random::Range(10.0f, 20.0f);
+				seed = Random::Range(0, 100);
 				if(owner->target->hp._cur > 0.f) break;
 			}
 		}
@@ -181,7 +179,7 @@ void AI_SwordManController::State_BassicAttack2(int _seed)
 	{
 		if (_seed % 10 > 5)
 		{
-			owner->GetKey(owner->input.QuickKey[0]);
+			owner->GetKey(owner->input.z);
 		}
 		else
 		{
@@ -200,7 +198,7 @@ void AI_SwordManController::State_BassicAttack3(int _seed)
 
 void AI_SwordManController::State_UpperSlash(int _seed)
 {
-	owner->GetKey(owner->input.QuickKey[0], false);
+	owner->GetKey(owner->input.z, false);
 	owner->GetKey(owner->input.QuickKey[1], false);
 	owner->GetKey(owner->input.x, false);
 	if (owner->target)
@@ -215,11 +213,11 @@ void AI_SwordManController::State_UpperSlash(int _seed)
 void AI_SwordManController::State_HardAttack(int _seed)
 {
 	owner->GetKey(owner->input.QuickKey[1], false);
-	owner->GetKey(owner->input.QuickKey[0]);
+	owner->GetKey(owner->input.z);
 }
 
 void AI_SwordManController::State_VaneSlash(int _seed)
 {
 	owner->GetKey(owner->input.QuickKey[2], false);
-	owner->GetKey(owner->input.QuickKey[0]);
+	owner->GetKey(owner->input.z);
 }

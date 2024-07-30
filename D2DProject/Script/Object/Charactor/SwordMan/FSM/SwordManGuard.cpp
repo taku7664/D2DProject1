@@ -10,7 +10,8 @@ void FSM::SwordManGuard::Start()
 void FSM::SwordManGuard::StateEnter()
 {
 	owner->animator->ChangeAnimation("Guard", false);
-	owner->state = CharactorState::Attack;
+	//owner->animator->Stop();
+	owner->state = CharactorState::Guard;
 	owner->soundPlayer->Play("Guard");
 	guardTime = 0.f;
 }
@@ -18,12 +19,7 @@ void FSM::SwordManGuard::StateEnter()
 void FSM::SwordManGuard::StateUpdate()
 {
 	guardTime += Time::deltaTime;
-	if (guardTime > 2.f)
-	{
-		FSM->ChangeState("Idle");
-		return;
-	}
-	if (owner->TriggerKeyUp('X'))
+	if (guardTime > 0.5f && !owner->TriggerKeyHold(owner->input.QuickKey[LoadSkill::Guard().id]))
 	{
 		FSM->ChangeState("Idle");
 		return;

@@ -13,7 +13,7 @@ bool ICharactorFSM::CheckQuickKey(bool _isAttack)
 		if (owner->skillSlot[i])
 		{
 			// 여기 조건에 키입력 or 커맨드를 달면 될듯.
-			if (owner->TriggerKeyHold(owner->input.QuickKey[i]))
+			if (owner->TriggerKeyDown(owner->input.QuickKey[i]))
 			{
 				if (owner->skillSlot[i]->CanUse())
 				{

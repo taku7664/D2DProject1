@@ -9,6 +9,7 @@ class AI_SwordManController
 private:
 
 	AI* owner;
+	int seed = 0;
 	float targetTimer = 0.f;
 	float moveTimer = 10.f;
 	float seedTimer = 0.f;
@@ -33,7 +34,6 @@ public:
 
 	void Start();
 	void Update();
-	void FixedUpdate();
 
 };
 

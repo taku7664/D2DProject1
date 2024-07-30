@@ -1,4 +1,5 @@
 #include "CharactorRun.h"
+#include "Contents.h"
 #include "../CharactorCore.h"
 #include "CharactorJump.h"
 
@@ -18,6 +19,16 @@ void FSM::CharactorRun::StateUpdate()
 
 	if (CheckQuickKey(false)) // Äü½½·Ô Ã³¸®
 		return;	
+
+	if (owner->TriggerKeyHold(owner->input.z))
+	{
+		if (owner->skillList[LoadSkill::UpperSlash().id]->CanUse())
+		{
+			FSM->ChangeState("Upper");
+			owner->skillList[LoadSkill::UpperSlash().id]->coolCount = 0;
+			return;
+		}
+	}
 
 	if (owner->TriggerKeyHold(owner->input.x))
 	{

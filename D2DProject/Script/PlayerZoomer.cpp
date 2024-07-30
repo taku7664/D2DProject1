@@ -23,7 +23,7 @@ void PlayerZoomer::Update()
 		}
 		if (index < GameMode::playerList.size())
 		{
-			cameraController->targetActor = GameMode::playerList[index];
+			cameraController->targetActor = GameMode::playerList[index]->gameObject;
 		}
 		else
 		{

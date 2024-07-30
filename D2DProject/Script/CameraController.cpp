@@ -21,16 +21,14 @@ void CameraController::Update()
 		{
 			Vector2 maxPos;
 			Vector2 minPos = Vector2(9999.f, 9999.f);
-			for (Actor*& actor : GameMode::playerList)
+			for (CharactorCore*& core : GameMode::playerList)
 			{
-				// 죽은 상대는 뺀다.
-				CharactorCore* core = actor->GetComponent<CharactorCore>();
 				if (core->state == CharactorState::Die) continue;
 				// 제일 작은 벡터와 큰 벡터 구하기
-				if (actor->transform->position.x > maxPos.x) maxPos.x = actor->transform->position.x;
-				if (actor->transform->position.x < minPos.x) minPos.x = actor->transform->position.x;
-				if (actor->transform->position.y > maxPos.y) minPos.y = actor->transform->position.y;
-				if (actor->transform->position.y < minPos.y) minPos.y = actor->transform->position.y;
+				if (core->gameObject->transform->position.x > maxPos.x) maxPos.x = core->gameObject->transform->position.x;
+				if (core->gameObject->transform->position.x < minPos.x) minPos.x = core->gameObject->transform->position.x;
+				if (core->gameObject->transform->position.y > maxPos.y) minPos.y = core->gameObject->transform->position.y;
+				if (core->gameObject->transform->position.y < minPos.y) minPos.y = core->gameObject->transform->position.y;
 			}
 			// 포지션 조정
 			// 최대값과 최소값 합의 중앙

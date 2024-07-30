@@ -17,10 +17,20 @@ enum class GameProcess
 
 class GameMode
 {
+	template <typename T1, typename T2>
+	static CharactorCore* CreatePlayer(World* _world)
+	{
+		T1* CharactorCore = _world->CreateObject<Actor>("Player" + std::to_string(playerList.size())
+			, LayerTag::Object, ObjectTag::Player)->AddComponent<T1>();
+		CharactorCore->gameObject->SetPersistent(true);
+		CharactorCore->SetCharactor<T2>();
+		return CharactorCore;
+	}
+
 public:
 
 	static GameProcess curState;
-	static std::vector<Actor*> playerList;
+	static std::vector<CharactorCore*> playerList;
 	static std::vector<CharactorCore*> deadList;
 	static int   playerCount;
 
@@ -33,28 +43,50 @@ public:
 	static CharactorCore* CheckWinner();
 
 	template <typename T1, typename T2>
-	static Actor* AddPlayer(World* _world)
+	static CharactorCore* AddPlayer(World* _world)
 	{
-		Actor* actor = _world->CreateObject<Actor>("Player" + std::to_string(playerList.size())
-			, LayerTag::Object, ObjectTag::Player);
-		actor->SetPersistent(true);
-		T1* p = actor->AddComponent<T1>();
-		p->SetCharactor<T2>();
-		playerList.push_back(actor);
-		return actor;
+		CharactorCore* core;
+		core = CreatePlayer<T1, T2>(_world);
+		playerList.push_back(core);
+		return core;
 	}
+
 	static void RemovePlayer(int _index)
 	{
-		playerList[_index]->SetDestroy();
+		playerList[_index]->gameObject->SetDestroy();
 		playerList.erase(playerList.begin() + _index);
 		playerCount = 0;
-		for (Actor* actor : playerList)
+		for (CharactorCore* CharactorCore : playerList)
 		{
-			Player* player = actor->GetComponent<Player>();
+			Player* player = CharactorCore->gameObject->GetComponent<Player>();
 			if (player)
 			{
 				player->inputID = ++playerCount;
 			}
+		}
+	}
+	template <typename T1, typename T2>
+	static CharactorCore* RemoveAndAdd(int _index, World* _world)
+	{
+		playerList[_index]->gameObject->SetDestroy();
+		CharactorCore* core = CreatePlayer<T1, T2>(_world);
+		(*(playerList.begin() + _index)) = core;
+		playerCount = 0;
+		for (CharactorCore* CharactorCore : playerList)
+		{
+			Player* player = CharactorCore->gameObject->GetComponent<Player>();
+			if (player)
+			{
+				player->inputID = ++playerCount;
+			}
+		}
+		return core;
+	}
+	static void Clear()
+	{
+		for (CharactorCore* core : playerList)
+		{
+			core->pvpInfo.Clear();
 		}
 	}
 };

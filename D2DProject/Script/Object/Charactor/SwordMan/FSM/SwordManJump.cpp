@@ -15,7 +15,7 @@ namespace FSM
 	}
 	void SwordManJump::StateUpdate()
 	{
-		if (owner->gravity > -owner->jumpPower * 0.7f && owner->animator->currentFrame >= clamp - 1)
+		if (owner->gravity > -owner->jumpPower * 0.8f && owner->animator->currentFrame >= clamp - 1)
 		{
 			if (owner->TriggerKeyHold(owner->input.x))
 			{

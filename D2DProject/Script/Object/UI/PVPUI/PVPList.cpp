@@ -71,8 +71,8 @@ namespace PVPUI
 				playerList[i]->pt->uiSprite->SetState(GameState::Active);
 				playerList[i]->bt->uiSprite->index = 1;
 				if (dynamic_cast<Player*>(GameMode::playerList[playerList[i]->id]))
-					playerList[i]->pt->uiSprite->index = 0;
-				else playerList[i]->pt->uiSprite->index = 1;
+					playerList[i]->pt->uiSprite->index = 1;
+				else playerList[i]->pt->uiSprite->index = 0;
 			}
 			else if (i == GameMode::playerList.size())
 			{

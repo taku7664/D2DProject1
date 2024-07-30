@@ -3,6 +3,20 @@
 
 namespace LoadSkill
 {
+	struct Guard : public LoadSkillData
+	{
+		Guard()
+		{
+			id = 0;
+			key = "Guard";
+			data =
+			{
+				{1}, // 레벨
+				{true}, // 평타 캔슬 가능 여부
+				{1}  // 쿨타임
+			};
+		}
+	};
 	struct BackStepCutter : public LoadSkillData
 	{
 		BackStepCutter()
