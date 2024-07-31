@@ -15,9 +15,19 @@ void PVPUI::ResultUI::Start()
 	uiSprite->renderOffset = Vector2(10, -170);
 	gameObject->depthsLevel = 100;
 	rect->gameObject->depthsLevel = gameObject->depthsLevel - 10;
+
+	exitFont = gameObject->AddComponent<SpriteRenderer2D>();
+	exitFont->SetSprite(LoadSprite::ResultUI2().Load());
+	exitFont->alpha = 0.5f;
 }
 
 void PVPUI::ResultUI::Update()
 {
+	
+}
 
+void PVPUI::ResultUI::OnDestroy()
+{
+	LoadSprite::ResultUI2().Release();
+	LoadSprite::ResultUI1().Release();
 }

@@ -12,6 +12,8 @@ void HUD::HUDOwner::Start()
 		upperHUDs[i]->gameObject->transform->position =
 			Vector2(200 * (i % 4), 60 * (i / 4));
 	}
+
+
 }
 
 void HUD::HUDOwner::Update()

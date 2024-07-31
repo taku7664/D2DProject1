@@ -18,6 +18,13 @@ namespace PVPUI
 		actor->transform->SetParent(gameObject->transform);
 		actor->transform->position.x = 40;
 		pt = actor->AddComponent<SelectType>();
+
+		txt = gameObject->AddComponent<TextRenderer>();
+		txt->SetText(L"ASDASD");
+		//txt->SetFont(ResourceManager::GetFont(L"던파 비트비트체 v2"));
+		txt->TextSize(25);
+		txt->TextColorToRange(D2D1::ColorF(D2D1::ColorF::Red), 0, 5);
+		txt->TextBold(BoldType::Bold);
 	}
 	void List::Update()
 	{
@@ -39,7 +46,7 @@ namespace PVPUI
 		if (pt->button->OnPress() && pt->GetState() == GameState::Active)
 		{
 			CharactorCore* core;
-			if (bt->uiSprite->index == 1)
+			if (pt->uiSprite->index == 1)
 			{
 				core = GameMode::RemoveAndAdd<AI, SwordMan>(id, WorldManager::GetActiveWorld());
 			}

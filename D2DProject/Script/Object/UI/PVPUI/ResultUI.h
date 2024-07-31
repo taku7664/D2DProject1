@@ -7,10 +7,13 @@ namespace PVPUI
 		: public IUICore
 	{
 	public:
+
 		RectRenderer* rect;
+		SpriteRenderer2D* exitFont;
 
 		virtual void Start();
 		virtual void Update();
+		virtual void OnDestroy();
 
 	};
 }

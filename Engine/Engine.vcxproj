@@ -170,6 +170,7 @@
     <ClInclude Include="Component\Script.h" />
     <ClInclude Include="Component\Transform2D.h" />
     <ClInclude Include="Component\Rednerer\LineRenderer.h" />
+    <ClInclude Include="Resource\Font.h" />
     <ClInclude Include="SoundSystem\ISoundSystem.h" />
     <ClInclude Include="Resource\FMODSound.h" />
     <ClInclude Include="SoundSystem\FMODSystem.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Resource\Manager\ResourceManager.h" />
     <ClInclude Include="Resource\Resource.h" />
     <ClInclude Include="Resource\Sprite2D.h" />
+    <ClInclude Include="Component\Rednerer\TextRenderer.h" />
     <ClInclude Include="World\Layer\Layer.h" />
     <ClInclude Include="World\Manager\WorldManager.h" />
     <ClInclude Include="World\Object\Actor\Actor.h" />
@@ -232,6 +234,7 @@
     <ClCompile Include="Component\Script.cpp" />
     <ClCompile Include="Component\Transform2D.cpp" />
     <ClCompile Include="Component\Rednerer\LineRenderer.cpp" />
+    <ClCompile Include="Resource\Font.cpp" />
     <ClCompile Include="SoundSystem\ISoundSystem.cpp" />
     <ClCompile Include="Resource\FMODSound.cpp" />
     <ClCompile Include="SoundSystem\FMODSystem.cpp" />
@@ -258,6 +261,7 @@
     <ClCompile Include="Resource\Manager\ResourceManager.cpp" />
     <ClCompile Include="Resource\Resource.cpp" />
     <ClCompile Include="Resource\Sprite2D.cpp" />
+    <ClCompile Include="Component\Rednerer\TextRenderer.cpp" />
     <ClCompile Include="World\Layer\Layer.cpp" />
     <ClCompile Include="World\Manager\WorldManager.cpp" />
     <ClCompile Include="World\Object\Actor\Actor.cpp" />

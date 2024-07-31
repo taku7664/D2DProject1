@@ -6,7 +6,6 @@ void AI_SwordManController::Start()
 {
 	owner = gameObject->GetComponent<AI>();
 	if (!owner) assert(false);
-	TargettingLogic();
 }
 
 void AI_SwordManController::Update()
@@ -140,7 +139,7 @@ bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 
 void AI_SwordManController::TargettingLogic()
 {
-	if (targetTimer <= 0.f && GameMode::playerList.size() >= 2)
+	if ((targetTimer <= 0.f && GameMode::playerList.size() >= 2) || !owner->target)
 	{
 		while (true)
 		{

@@ -76,6 +76,7 @@ void IAttackCore::OnCollisionEnter(Actor* _collision)
 				destCore->velocity = { vPower.x * 2, vPower.y };
 				destCore->dirVector.x = gameObject->transform->scale.x;
 				soundPlayer->Play(LoadSound::GuardHit().Load());
+				destCore->animator->GotoAndPlay(0);
 			}
 			// =================피격 사운드 출력=================
 			PlayHitSound();

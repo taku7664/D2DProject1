@@ -215,6 +215,13 @@ namespace LoadSprite
 			_data = SpriteData(Vector2(1, 1));
 		}
 	};
+	struct ResultUI2 : public LoadSpriteData {
+		ResultUI2() {
+			_key = L"S_ResultUI2";
+			_path = L"Sprite/UI/PVP_Result2.png";
+			_data = SpriteData(Vector2(1, 1));
+		}
+	};
 	/*struct LightGuardian : public LoadSpriteData {
 		LightGuardian() {
 			_key = L"S_LightGuardian";

@@ -12,6 +12,9 @@ namespace PVPUI
 	public:
 		ListButton* bt;
 		SelectType* pt;
+
+		TextRenderer* txt;
+
 		int id = -1;
 		virtual void Start();
 		virtual void Update();

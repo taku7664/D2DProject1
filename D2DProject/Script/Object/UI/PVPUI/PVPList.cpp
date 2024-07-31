@@ -16,6 +16,7 @@ namespace PVPUI
 	void PVPList::Start()
 	{
 		__super::Start();
+
 		gameObject->depthsLevel = -1;
 		uiSprite->SetSprite(LoadSprite::Pvp_List().Load());
 		gameObject->transform->position =

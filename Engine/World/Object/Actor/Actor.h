@@ -12,6 +12,7 @@
 #include "../../../Component/Rednerer/Animator2D.h"
 #include "../../../Component/Rednerer/RectRenderer.h"
 #include "../../../Component/Rednerer/LineRenderer.h"
+#include "../../../Component/Rednerer/TextRenderer.h"
 // ColliderComponent
 #include "../../../Component/Collider/BoxCollider2D.h"
 #include "../../../Component/Collider/CircleCollider2D.h"
@@ -20,6 +21,7 @@ class Component;
 class Layer;
 class Object;
 class LineRenderer;
+class TextRenderer;
 
 class Actor
 	: public Object

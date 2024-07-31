@@ -37,6 +37,8 @@ void DemoApp::LoadWorld()
 
 void DemoApp::LoadResource()
 {
+	ResourceManager::AddFont(L"던파 비트비트체 v2", L"Font/DNFBitBitv2.ttf");
+
 	FMODSystem::AddGroup("BackGround");
 	FMODSystem::AddGroup("Effect");
 	FMODSystem::AddGroup("Voice");

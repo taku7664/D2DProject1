@@ -2,9 +2,10 @@
 #include "ResourceManager.h"
 
 std::wstring ResourceManager::m_assetPath = L"Asset/";
-std::unordered_map<std::wstring, Resource::Sprite2D*> ResourceManager::m_spriteMap;
+std::unordered_map<std::wstring, Resource::Sprite2D*>	 ResourceManager::m_spriteMap;
 std::unordered_map<std::wstring, Resource::Animation2D*> ResourceManager::m_animationMap;
-std::unordered_map<std::wstring, Resource::FMODSound*> ResourceManager::m_audioMap;
+std::unordered_map<std::wstring, Resource::FMODSound*>   ResourceManager::m_audioMap;
+std::unordered_map<std::wstring, Resource::Font*>		 ResourceManager::m_fontMap;
 
 Resource::Sprite2D* ResourceManager::AddSprite2D(const std::wstring& _key, const std::wstring& _path, SpriteData _data)
 {
@@ -53,6 +54,22 @@ Resource::FMODSound* ResourceManager::AddFMODSound(const std::wstring& _key, con
 	return _audio;
 }
 
+Resource::Font* ResourceManager::AddFont(const std::wstring& _key, const std::wstring& _path)
+{
+	std::wstring temp = L"Asset/" + _path;
+	Resource::Font* _font = GetFont(_key);
+	if (_font != nullptr)
+	{
+		return _font;
+	}
+	else
+	{
+		_font = new Resource::Font(_key, temp, ResourceType::Font);
+		m_fontMap.insert(std::make_pair(_key, _font));
+	}
+	return _font;
+}
+
 Resource::Sprite2D* ResourceManager::GetSprite2D(const std::wstring& _key)
 {
 	auto it = m_spriteMap.find(_key);
@@ -83,6 +100,16 @@ Resource::FMODSound* ResourceManager::GetFMODSound(const std::wstring& _key)
 	return it->second;
 }
 
+Resource::Font* ResourceManager::GetFont(const std::wstring& _key)
+{
+	std::unordered_map<std::wstring, Resource::Font*>::iterator it = m_fontMap.find(_key);
+
+	if (it == m_fontMap.end())
+		return nullptr;
+
+	return it->second;
+}
+
 bool ResourceManager::ReleaseSprite2D(const std::wstring& _key)
 {
 	auto it = m_spriteMap.find(_key);
@@ -98,6 +125,7 @@ bool ResourceManager::ReleaseAnimation2D(const std::wstring& _key)
 	auto it = m_animationMap.find(_key);
 	if (it == m_animationMap.end())
 		return false;
+	delete (*it).second;
 	m_animationMap.erase(it);
 	return true;
 }
@@ -107,7 +135,18 @@ bool ResourceManager::ReleaseFMODSound(const std::wstring& _key)
 	auto it = m_audioMap.find(_key);
 	if (it == m_audioMap.end())
 		return false;
+	delete (*it).second;
 	m_audioMap.erase(it);
+	return true;
+}
+
+bool ResourceManager::ReleaseFont(const std::wstring& _key)
+{
+	auto it = m_fontMap.find(_key);
+	if (it == m_fontMap.end())
+		return false;
+	delete (*it).second;
+	m_fontMap.erase(it);
 	return true;
 }
 
@@ -128,4 +167,9 @@ void ResourceManager::Clear()
 		delete it->second;
 	}
 	m_audioMap.clear();
+	for (auto it = m_fontMap.begin(); it != m_fontMap.end(); ++it)
+	{
+		delete it->second;
+	}
+	m_fontMap.clear();
 }

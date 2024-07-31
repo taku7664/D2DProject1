@@ -195,6 +195,12 @@
     <ClInclude Include="Component\Rednerer\LineRenderer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Component\Rednerer\TextRenderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Font.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -333,6 +339,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Component\Rednerer\LineRenderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Rednerer\TextRenderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Font.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

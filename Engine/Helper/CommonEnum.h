@@ -60,6 +60,7 @@ enum class ComponentType
 	Animator2D,
 	RectRenderer,
 	LineRenderer,
+	TextRenderer,
 	Button,
 	Script,
 	FiniteStateMachine,
@@ -75,6 +76,7 @@ enum class ResourceType
 	Sprite2D,
 	Animation2D,
 	AudioClip,
+	Font,
 	SIZE,
 };
 
@@ -92,4 +94,20 @@ enum class MouseType // ¸¶¿ì½º
 	LEFT = VK_LBUTTON,
 	ROLL = VK_MBUTTON,
 	RIGHT = VK_RBUTTON,
+};
+
+enum class BoldType
+{
+	Light = 200,
+	U_Light = 300,
+	Medium = 400,
+	U_Medium = 500,
+	Heavy = 700,
+	U_Heavy = 800,
+
+	Thin = 200,
+	U_Thin = 300,
+	Default = 400,
+	Bold = 700,
+	U_Bold = 800,
 };
