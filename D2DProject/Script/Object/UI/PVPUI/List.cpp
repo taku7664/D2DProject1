@@ -20,6 +20,7 @@ namespace PVPUI
 		pt = actor->AddComponent<SelectType>();
 
 		txt = gameObject->AddComponent<TextRenderer>();
+		txt->size = Vector2(400, 100);
 		txt->SetText(L"ASDASD");
 		//txt->SetFont(ResourceManager::GetFont(L"던파 비트비트체 v2"));
 		txt->TextSize(25);
@@ -28,7 +29,7 @@ namespace PVPUI
 	}
 	void List::Update()
 	{
-		if (bt->button->OnPress() && bt->GetState() == GameState::Active)
+		if (bt->button->OnPress() && bt->uiSprite->GetState() == GameState::Active)
 		{
 			if (bt->uiSprite->index == 0)
 			{
@@ -43,7 +44,7 @@ namespace PVPUI
 				GameMode::RemovePlayer(id);
 			}
 		}
-		if (pt->button->OnPress() && pt->GetState() == GameState::Active)
+		if (pt->button->OnPress() && pt->uiSprite->GetState() == GameState::Active)
 		{
 			CharactorCore* core;
 			if (pt->uiSprite->index == 1)

@@ -30,6 +30,8 @@ public:
 	template<typename T>
 	T*			 FindObject(const std::string& _name, const LayerTag _tag = LayerTag::Defalut);
 
+	void		 ChangeWorld(std::string _key);
+
 	// ============외부에서 호출받는 함수 (충돌, 버튼, 활성화 등등)============
 	virtual void OnEnable() {}; // 오브젝트가 활성화 되면 호출됩니다.
 	virtual void OnDisable() {}; // 오브젝트가 비활성화 되면 호출됩니다.

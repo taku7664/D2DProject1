@@ -23,7 +23,7 @@ void CharactorCore::Start()
 	body->size = { 65.f, 100.f };
 	body->offset = { 0.f, 60.f };
 	
-	invTime = 1.0f;
+	invTime = 0.5f;
 }
 
 // 주요 업데이트는 FSM을 통해 업데이트 된다.

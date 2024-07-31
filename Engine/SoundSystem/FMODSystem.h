@@ -15,7 +15,8 @@ public:
         if (_group >= m_channelGroups.size()) assert(false && "ChnnelGroup Range Over");
         else return m_channelGroups[_group];
     }
-
+    static FMOD::ChannelGroup* GetMasterGroup() { return m_masterGroup; }
+    static  std::vector<FMOD::ChannelGroup*>& GetGroups() { return m_channelGroups; }
 private:
 
 	static FMOD::System*                    m_system;	// fmod ╫ц╫╨еш

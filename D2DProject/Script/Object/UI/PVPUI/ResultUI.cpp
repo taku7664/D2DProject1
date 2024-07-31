@@ -23,7 +23,14 @@ void PVPUI::ResultUI::Start()
 
 void PVPUI::ResultUI::Update()
 {
-	
+	if (DynamicInput::KeyDown(1, KeyType::SPACEBAR))
+	{
+		Destroy(gameObject);
+		Destroy(rect->gameObject);
+		std::string worldName = WorldManager::GetActiveWorld()->GetName();
+		ChangeWorld("SelectRoom");
+		WorldManager::DestroyWorld(worldName);
+	}
 }
 
 void PVPUI::ResultUI::OnDestroy()

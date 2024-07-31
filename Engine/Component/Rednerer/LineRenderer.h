@@ -6,7 +6,7 @@ class LineRenderer
 public:
 
 	LineRenderer();
-	~LineRenderer();
+	virtual ~LineRenderer() {}
 
 	void SetLineColor(D2D1_COLOR_F _color);
 

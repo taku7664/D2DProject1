@@ -9,9 +9,7 @@ void PVPMap::WorldLoad()
 
 void PVPMap::WorldDestroy()
 {
-	Clear(false);
 	GameMode::isEnd = false;
-	GameManager::BgmPlayer->Stop();
 }
 
 void PVPMap::WorldEnter()
@@ -40,4 +38,5 @@ void PVPMap::WorldEnter()
 
 void PVPMap::WorldExit()
 {
+	GameManager::BgmPlayer->Stop();
 }

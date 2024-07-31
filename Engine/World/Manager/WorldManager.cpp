@@ -4,6 +4,7 @@
 World*				 WorldManager::m_activeWorld = nullptr;
 World*				 WorldManager::m_loadWorld	 = nullptr;
 std::vector<World*>  WorldManager::m_worldList[(int)LayerTag::SIZE]{};
+std::vector<World*>  WorldManager::m_DestroyWorld{};
 
 void WorldManager::Release()
 {
@@ -55,6 +56,15 @@ void WorldManager::Render()
 	if (m_loadWorld)
 	{
 		LoadProcess();
+	}
+	if (!m_DestroyWorld.empty())
+	{
+		for (World* world : m_DestroyWorld)
+		{
+			world->WorldDestroy();
+			delete world;
+		}
+		m_DestroyWorld.clear();
 	}
 }
 

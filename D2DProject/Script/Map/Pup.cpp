@@ -26,8 +26,6 @@ void MAP::Pup::Start()
 }
 void MAP::Pup::OnDestroy()
 {
-	LoadSprite::Pup_Map().Release();
-	LoadSprite::Pup_BackGround().Release();
 }
 
 void MAP::Pup::SetSpawnPoint()

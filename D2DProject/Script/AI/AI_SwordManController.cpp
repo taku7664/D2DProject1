@@ -10,10 +10,16 @@ void AI_SwordManController::Start()
 
 void AI_SwordManController::Update()
 {
-	
+	static float seedTimer;
+	seedTimer = Time::deltaTime;
 	targetTimer -= Time::deltaTime;
 	moveTimer += Time::deltaTime;
 	seedTimer += Time::deltaTime;
+
+	if (seedTimer >= 3.f)
+	{
+		seed = Random::Range(0, 100);
+	}
 	// Å¸°ÙÆÃ
 	if (GameMode::curState == GameProcess::Start)
 	{
@@ -30,6 +36,7 @@ void AI_SwordManController::Update()
 			if (!MoveLogic(myPos, targetPos))
 			{
 				std::string state = owner->fsm->GetCurrentState()->GetName();
+
 				if (state == "Jump")			  State_Jump(seed);
 				else if (state == "BasicAttack1") State_BassicAttack1(seed);
 				else if (state == "BasicAttack2") State_BassicAttack2(seed);
@@ -39,6 +46,18 @@ void AI_SwordManController::Update()
 				else if (state == "VaneSlash")    State_VaneSlash(seed);
 			}
 		}
+	}
+	else
+	{
+		owner->GetKey(KeyType::UP, false);
+		owner->GetKey(KeyType::DOWN, false);
+		owner->GetKey(KeyType::RIGHT, false);
+		owner->GetKey(KeyType::LEFT, false);
+		owner->GetKey(owner->input.z, false);
+		owner->GetKey(owner->input.x, false);
+		owner->GetKey(owner->input.QuickKey[0], false);
+		owner->GetKey(owner->input.QuickKey[1], false);
+		owner->GetKey(owner->input.QuickKey[2], false);
 	}
 }
 
@@ -52,7 +71,7 @@ bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 {
 	if (targetDistance.x > 80 + (seed % 40) || targetDistance.y > 20 + (seed % 25))
 	{
-		if (moveTimer > 1.f)
+		if (moveTimer > 0.5f)
 		{
 			Vector2 move;
 			move.x = Random::Range(0, 1);
@@ -100,6 +119,7 @@ bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 			owner->GetKey(owner->input.x, false);
 			owner->GetKey(owner->input.z, false);
 			owner->GetKey(owner->input.QuickKey[1], false);
+			owner->GetKey(owner->input.QuickKey[2], false);
 
 			if (Random::Range(0, 5) == 0)
 			{
@@ -112,28 +132,68 @@ bool AI_SwordManController::MoveLogic(Vector2 _myPos, Vector2 _targetPos)
 	}
 	else
 	{
-		if (owner->animator->End() && (owner->state == CharactorState::Move || owner->state == CharactorState::Idle))
+		owner->GetKey(owner->input.z, false);
+		owner->GetKey(owner->input.x, false);
+		owner->GetKey(owner->input.QuickKey[1], false);
+		owner->GetKey(owner->input.QuickKey[2], false);
+		if (owner->animator->End() && (owner->state == CharactorState::Move || owner->state == CharactorState::Idle || owner->state == CharactorState::Jump))
 		{
 			if (_myPos.x > _targetPos.x)
-				owner->bodyActor->transform->scale.x = -1.f;
-			else owner->bodyActor->transform->scale.x = 1.f;
+			{
+				owner->GetKey(KeyType::LEFT);
+				owner->GetKey(KeyType::RIGHT, false);
+			}
+			else
+			{
+				owner->GetKey(KeyType::RIGHT);
+				owner->GetKey(KeyType::LEFT, false);
+			}
 		}
-		
-		int seed = Random::Range(0, 10);
-		if (seed < 4)
+		if (owner->target->zPos < -130 && (owner->state == CharactorState::Move || owner->state == CharactorState::Idle))
 		{
-			owner->GetKey(owner->input.x);
+			owner->GetKey(owner->input.c);
+
+			owner->GetKey(KeyType::UP, false);
+			owner->GetKey(KeyType::DOWN, false);
+			owner->GetKey(KeyType::RIGHT, false);
+			owner->GetKey(KeyType::LEFT, false);
+			owner->GetKey(owner->input.z, false);
+			owner->GetKey(owner->input.x, false);
+			owner->GetKey(owner->input.QuickKey[1], false);
+			owner->GetKey(owner->input.QuickKey[2], false);
 		}
-		else if (seed < 7)
+		else if (!owner->aiKeys[owner->input.c].IsDown)
 		{
-			if (owner->target->zPos > -40)
-				owner->GetKey(owner->input.QuickKey[1]);
+			owner->GetKey(owner->input.c, false);
+			int rand = Random::Range(0, 10);
+			if (rand < 3)
+			{
+				owner->GetKey(owner->input.x);
+			}
+			else if (rand < 5)
+			{
+				if (owner->target->zPos > -40)
+					owner->GetKey(owner->input.QuickKey[1]);
+			}
+			else if (rand < 7 && owner->target->zPos < -15)
+			{
+				if (owner->target->zPos > -40)
+					owner->GetKey(owner->input.QuickKey[2]);
+			}
+			else if (rand < 10)
+			{
+				owner->GetKey(owner->input.z);
+			}
 		}
-		else if (seed < 10)
+		/*if (owner->target->bodyActor->transform->scale.x != owner->bodyActor->transform->scale.x)
 		{
-			owner->GetKey(owner->input.z);
-		}
+			if (seed > Random::Range(0, 100) || owner->aiKeys[owner->input.x].IsHold)
+			{
+				owner->GetKey(owner->input.QuickKey[0]);
+			}
+		}*/
 	}
+	
 	return false;
 }
 
@@ -148,7 +208,6 @@ void AI_SwordManController::TargettingLogic()
 			{
 				owner->target = temp;
 				targetTimer = Random::Range(10.0f, 20.0f);
-				seed = Random::Range(0, 100);
 				if(owner->target->hp._cur > 0.f) break;
 			}
 		}
@@ -164,16 +223,41 @@ void AI_SwordManController::State_Jump(int _seed)
 		{
 			owner->GetKey(owner->input.x);
 		}
+		Vector2 _myPos = owner->targetRay->startPos = gameObject->transform->WorldPosition();
+		Vector2 _targetPos = owner->targetRay->endPos = owner->target->gameObject->transform->WorldPosition();
+		if (_myPos.x > _targetPos.x)
+		{
+			owner->GetKey(KeyType::LEFT);
+			owner->GetKey(KeyType::RIGHT, false);
+		}
+		else
+		{
+			owner->GetKey(KeyType::RIGHT);
+			owner->GetKey(KeyType::LEFT, false);
+		}
 	}
 }
 
 void AI_SwordManController::State_BassicAttack1(int _seed)
 {
-	owner->GetKey(owner->input.x);
+	Vector2 _myPos = owner->targetRay->startPos = gameObject->transform->WorldPosition();
+	Vector2 _targetPos = owner->targetRay->endPos = owner->target->gameObject->transform->WorldPosition();
+	if (_myPos.x > _targetPos.x)
+	{
+		owner->GetKey(KeyType::LEFT);
+		owner->GetKey(KeyType::RIGHT, false);
+	}
+	else
+	{
+		owner->GetKey(KeyType::RIGHT);
+		owner->GetKey(KeyType::LEFT, false);
+	}
 }
 
 void AI_SwordManController::State_BassicAttack2(int _seed)
 {
+	Vector2 _myPos = owner->targetRay->startPos = gameObject->transform->WorldPosition();
+	Vector2 _targetPos = owner->targetRay->endPos = owner->target->gameObject->transform->WorldPosition();
 	if (owner->animator->currentFrame > 6)
 	{
 		if (_seed % 10 > 5)
@@ -186,37 +270,47 @@ void AI_SwordManController::State_BassicAttack2(int _seed)
 		}
 		owner->GetKey(owner->input.x, false);
 	}
+	if (_myPos.x > _targetPos.x)
+	{
+		owner->GetKey(KeyType::LEFT);
+		owner->GetKey(KeyType::RIGHT, false);
+	}
+	else
+	{
+		owner->GetKey(KeyType::RIGHT);
+		owner->GetKey(KeyType::LEFT, false);
+	}
 }
 
 void AI_SwordManController::State_BassicAttack3(int _seed)
 {
 	owner->GetKey(owner->input.x, false);
 	if(owner->animator->currentFrame > 6)
-		owner->GetKey(owner->input.QuickKey[2]);
+		owner->GetKey(owner->input.QuickKey[1]);
 }
 
 void AI_SwordManController::State_UpperSlash(int _seed)
 {
 	owner->GetKey(owner->input.z, false);
-	owner->GetKey(owner->input.QuickKey[1], false);
 	owner->GetKey(owner->input.x, false);
-	if (owner->target)
-	{
-		if (owner->target->zPos < -30)
-		{
-			owner->GetKey(owner->input.c);
-		}
-	}
+	owner->GetKey(owner->input.QuickKey[1], false);
+	owner->GetKey(owner->input.QuickKey[2], false);
 }
 
 void AI_SwordManController::State_HardAttack(int _seed)
 {
+	owner->GetKey(owner->input.z, false);
+	owner->GetKey(owner->input.x, false);
 	owner->GetKey(owner->input.QuickKey[1], false);
+	owner->GetKey(owner->input.QuickKey[2], false);
 	owner->GetKey(owner->input.z);
 }
 
 void AI_SwordManController::State_VaneSlash(int _seed)
 {
+	owner->GetKey(owner->input.z, false);
+	owner->GetKey(owner->input.x, false);
+	owner->GetKey(owner->input.QuickKey[1], false);
 	owner->GetKey(owner->input.QuickKey[2], false);
 	owner->GetKey(owner->input.z);
 }

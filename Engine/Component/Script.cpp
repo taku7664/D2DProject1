@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Script.h"
 #include "../World/Object/Object.h"
+#include "World/Manager/WorldManager.h"
 
 Script::Script()
 {
@@ -21,3 +22,7 @@ void Script::SetPersistentObject(Object* _obj, bool _isPersistent)
 	_obj->SetPersistent(_isPersistent);
 }
 
+void Script::ChangeWorld(std::string _key)
+{
+	WorldManager::ChangeWorld(_key);
+}

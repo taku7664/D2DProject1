@@ -29,11 +29,10 @@ private:
 
 	Rect_F m_textBox;
 	std::wstring m_text;                 // Ãú·ÂÇÒ ÅØ½ºÆ®
-	Resource::Font* m_font;                        // ÆùÆ®
+	Resource::Font* m_font;              // ÆùÆ®
 	float m_textSize;                    // ±Û¾¾ Å©±â
 	D2D1_COLOR_F m_textColor;            // ±Û¾¾ »ö
 	DWRITE_FONT_WEIGHT m_textBoldSize;   // ±Û¾¾ ±½±â
-	IDWriteTextFormat* m_textFormat;
 	IDWriteTextLayout* m_textLayout;
 
 	void UpdateTextLayout();

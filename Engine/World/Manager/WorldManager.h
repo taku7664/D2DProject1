@@ -48,10 +48,9 @@ public:
 			{
 				if (m_worldList[i][j]->GetName() == _key)
 				{
-					m_worldList[i][j]->WorldDestroy();
-					delete m_worldList[i][j];
-					m_worldList[i].erase(m_worldList->begin() + j);
-					return m_worldList[i][j];
+					m_DestroyWorld.push_back(m_worldList[i][j]);
+					m_worldList[i].erase(m_worldList[i].begin() + j);
+					return true;
 				}
 			}
 		}
@@ -69,6 +68,7 @@ private:
 	static World* m_activeWorld;
 	static World* m_loadWorld;
 	static std::vector<World*> m_worldList[(int)LayerTag::SIZE];
+	static std::vector<World*> m_DestroyWorld;
 
 	static void LoadProcess();
 };

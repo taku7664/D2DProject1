@@ -17,8 +17,9 @@ GameManager::GameManager()
 	bgms.push_back(LoadSound::Town().Load());
 	bgms.push_back(LoadSound::Pub().Load());
 	BgmPlayer = CreateObject<Actor>("BgmPlayer")->AddComponent<FMODPlayer>();
-	//BgmPlayer->Play(bgms[Random::Range(0, bgms.size() - 1)]);
-
+	FMODSystem::GetGroups()[0]->setVolume(0.1);
+	FMODSystem::GetGroups()[1]->setVolume(0.1);
+	FMODSystem::GetGroups()[2]->setVolume(0.1);
 	for (int i = 1; i <= 6; i++)
 	{
 		ResourceManager::AddSprite2D(L"DamageFont" + std::to_wstring(i),

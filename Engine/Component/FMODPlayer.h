@@ -6,7 +6,7 @@ class FMODPlayer
 	: public Component
 {
 public:
-
+	virtual ~FMODPlayer() {}
 	Resource::FMODSound* AddAudio(std::string _key, Resource::FMODSound* _sound);
 	Resource::FMODSound* FindAudio(std::string _key);
 

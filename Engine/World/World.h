@@ -60,10 +60,14 @@ public:
 	std::string		 GetName()const { return m_WorldName; }
 	WorldTag		 GetTag()const { return m_WorldTag; }
 	Layer**			 GetLayerList() { return m_layers; }
+	GameState	     GetState() { return m_type; }
 	void			 SetName(std::string _name) { m_WorldName = _name; }
 	void			 SetTag(WorldTag _tag) { m_WorldTag = _tag; }
+	void			 SetDestroy() { m_type = GameState::Destroy; }
 
 private:
+
+	GameState		 m_type = GameState::Active;
 
 	std::string		 m_WorldName;
 	WorldTag		 m_WorldTag;		 

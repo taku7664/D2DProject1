@@ -15,6 +15,8 @@ void PVPMap_Pup::WorldDestroy()
 
 void PVPMap_Pup::WorldEnter()
 {
+	LoadSprite::Pup_Map().Load();
+	LoadSprite::Pup_BackGround().Load();
 	map = CreateObject<Actor>("Map", LayerTag::Map, ObjectTag::Defalut);
 	mapCore = map->AddComponent<MAP::Pup>();
 	__super::WorldEnter();
@@ -22,4 +24,5 @@ void PVPMap_Pup::WorldEnter()
 
 void PVPMap_Pup::WorldExit()
 {	
+	__super::WorldExit();
 }

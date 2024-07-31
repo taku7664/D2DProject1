@@ -11,7 +11,6 @@ TextRenderer::TextRenderer()
 	m_textColor(D2D1::ColorF(D2D1::ColorF::White)),
 	m_textBoldSize(DWRITE_FONT_WEIGHT_NORMAL),
 	m_textBox(),
-	m_textFormat(nullptr),
 	m_textLayout(nullptr),
 	m_text(L"")
 {
@@ -20,28 +19,11 @@ TextRenderer::TextRenderer()
 
 TextRenderer::~TextRenderer()
 {
-	if (m_textFormat) m_textFormat->Release();
 	if (m_textLayout) m_textLayout->Release();
 }
 
 void TextRenderer::Initialize()
 {
-
-	HRESULT check = D2DRender::GetWriteFactory()->CreateTextFormat(
-		L"맑은 고딕",                        // 폰트 이름
-		nullptr,                            // 폰트 컬렉션 (nullptr은 기본 폰트 컬렉션)
-		DWRITE_FONT_WEIGHT_NORMAL,
-		DWRITE_FONT_STYLE_NORMAL,
-		DWRITE_FONT_STRETCH_NORMAL,
-		20.0f,                              // 폰트 크기
-		L"",                           // 로캘(글씨 지역이름 설정이라는데 모르겠네요)
-		&m_textFormat
-	);
-	if (FAILED(check))
-	{
-		assert(false && "TextRenderer_CreateFormat_ERROR");
-	}
-
 	UpdateTextLayout();
 }
 

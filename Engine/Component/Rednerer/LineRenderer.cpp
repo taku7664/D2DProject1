@@ -13,11 +13,6 @@ LineRenderer::LineRenderer()
 	endPos = { 0,0 };
 }
 
-LineRenderer::~LineRenderer()
-{
-
-}
-
 void LineRenderer::SetLineColor(D2D1_COLOR_F _color)
 {
 	m_linecolor = _color;
@@ -29,13 +24,6 @@ bool LineRenderer::Draw(Camera2D* _camera)
 	ID2D1SolidColorBrush* brush = D2DRender::GetBrush();
 	D2D1_COLOR_F oldColor = brush->GetColor(); // 기존 색상 저장
 	float oldAlpha = brush->GetOpacity(); // 기존 색상 저장
-
-	//Vector2 startPos = startPos;
-	//Vector2 endPos = endPos;
-	//startPos.x = std::round(startPos.x);
-	//startPos.y = std::round(startPos.y);
-	//endPos.x = std::round(endPos.x);
-	//endPos.y = std::round(endPos.y);
 
 	renderTarget->SetTransform(_camera->CameraMatrix());
 

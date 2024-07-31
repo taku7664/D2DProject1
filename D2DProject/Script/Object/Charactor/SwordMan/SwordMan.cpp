@@ -24,7 +24,7 @@ void SwordMan::Initialize()
 {
 	core->hp = { 20000, 20000 };
 	core->mp = { 500, 500 };
-	core->atk = 850.f; // 350
+	core->atk = 350.f; // 350
 	core->attackSpd = 2.0f;
 	core->moveSpd = 150.f;
 	core->jumpPower = 500.0f;
